@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M.E.C — Maritime English Course · Proposal Premium 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   ROOT THEMES
+═══════════════════════════════════════════ */
+:root {
+  --gold:    #C9A84C;
+  --gold2:   #E8C876;
+  --gold3:   #F5E4A8;
+  --gold-dim: rgba(201,168,76,0.15);
+}
+[data-theme="dark"] {
+  --bg:#07111F;--bg2:#0D1E33;--bg3:#122542;--card:#0F1E30;--card2:#152840;
+  --border:rgba(201,168,76,0.2);--border2:rgba(255,255,255,0.06);
+  --text:#E8EDF5;--text2:#9AAEC8;--text3:#6480A0;
+  --nav-bg:rgba(7,17,31,0.95);--shadow:0 4px 40px rgba(0,0,0,0.5);
+  --shadow2:0 2px 20px rgba(0,0,0,0.3);
+  --table-h:#0D1E33;--table-e:#0F2035;--table-o:#0D1828;
+  --swot-s:#0B1D35;--swot-w:#1A1030;--swot-o:#0B2218;--swot-t:#2A0F0F;
+  --faq-bg:#0F1E30;--ring:rgba(201,168,76,0.3);
+  --modal-bg:rgba(5,12,25,0.92);--modal-card:#0F1E30;
+}
+[data-theme="light"] {
+  --bg:#F4F0E8;--bg2:#FFFFFF;--bg3:#EBE6DA;--card:#FFFFFF;--card2:#F8F5EE;
+  --border:rgba(201,168,76,0.35);--border2:rgba(11,29,53,0.08);
+  --text:#0D1E33;--text2:#3A5070;--text3:#7A90A8;
+  --nav-bg:rgba(244,240,232,0.97);--shadow:0 4px 40px rgba(0,0,0,0.1);
+  --shadow2:0 2px 20px rgba(0,0,0,0.06);
+  --table-h:#0D1E33;--table-e:#F0EDE6;--table-o:#FAFAF8;
+  --swot-s:#0B1D35;--swot-w:#1A1030;--swot-o:#0B2218;--swot-t:#2A0F0F;
+  --faq-bg:#FFFFFF;--ring:rgba(201,168,76,0.4);
+  --modal-bg:rgba(0,0,0,0.75);--modal-card:#FFFFFF;
+}
+
+/* ═══════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;transition:background .4s,color .4s;}
+
+/* ═══════════════════════════════════════════
+   MODAL SYSTEM
+═══════════════════════════════════════════ */
+#modal-overlay {
+  position:fixed;inset:0;z-index:9998;
+  background:var(--modal-bg);
+  backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s;
+}
+#modal-overlay.active{opacity:1;pointer-events:all;}
+#modal-box {
+  background:var(--modal-card);
+  border:1px solid var(--border);
+  border-top:3px solid var(--gold);
+  border-radius:18px;
+  max-width:720px;width:100%;
+  max-height:88vh;
+  overflow-y:auto;
+  padding:40px;
+  position:relative;
+  box-shadow:0 24px 80px rgba(0,0,0,0.6);
+  transform:scale(.96) translateY(12px);
+  transition:transform .3s;
+}
+#modal-overlay.active #modal-box{transform:scale(1) translateY(0);}
+.modal-close {
+  position:absolute;top:18px;right:18px;
+  width:36px;height:36px;border-radius:50%;
+  background:var(--card2);border:1px solid var(--border);
+  cursor:pointer;font-size:18px;color:var(--text2);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,color .2s;
+}
+.modal-close:hover{background:var(--gold);color:#07111F;}
+.modal-eyebrow{font-family:'Bebas Neue',cursive;font-size:11px;letter-spacing:5px;color:var(--gold);margin-bottom:8px;}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3.5vw,30px);font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.2;}
+.modal-sub{font-size:13px;color:var(--text3);margin-bottom:20px;font-weight:600;letter-spacing:.5px;}
+.modal-divider{height:1px;background:var(--border);margin:20px 0;}
+.modal-section-title{font-family:'Bebas Neue',cursive;font-size:12px;letter-spacing:4px;color:var(--gold);margin-bottom:12px;}
+.modal-body p{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:10px;}
+.modal-body ul{list-style:none;margin-bottom:14px;}
+.modal-body li{font-size:14px;color:var(--text2);padding:6px 0 6px 20px;position:relative;border-bottom:1px solid var(--border2);line-height:1.6;}
+.modal-body li::before{content:'▸';position:absolute;left:0;top:9px;color:var(--gold);font-size:11px;}
+.modal-tags{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;}
+.modal-tag{background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:5px 16px;font-size:12px;color:var(--gold);font-weight:600;letter-spacing:.5px;}
+.modal-link-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px;}
+.modal-link-card{
+  background:var(--card2);border:1px solid var(--border2);border-radius:12px;
+  padding:16px;text-decoration:none;
+  display:flex;flex-direction:column;gap:4px;
+  transition:border-color .2s,transform .2s;
+}
+.modal-link-card:hover{border-color:var(--gold);transform:translateY(-2px);}
+.mlc-category{font-size:10px;letter-spacing:3px;color:var(--text3);font-weight:700;}
+.mlc-name{font-size:14px;font-weight:700;color:var(--text);}
+.mlc-url{font-size:11px;color:var(--gold);margin-top:2px;}
+.mlc-desc{font-size:12px;color:var(--text2);line-height:1.5;margin-top:4px;}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:14px 0;}
+.kpi-box{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;}
+.kpi-num{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--gold2);display:block;line-height:1;}
+.kpi-label{font-size:11px;color:var(--text3);line-height:1.4;display:block;margin-top:4px;}
+
+/* ═══════════════════════════════════════════
+   CLICKABLE INDICATOR
+═══════════════════════════════════════════ */
+.clickable{cursor:pointer;position:relative;}
+.clickable::after{
+  content:'↗';
+  position:absolute;top:12px;right:14px;
+  font-size:12px;color:var(--gold);opacity:.6;
+  transition:opacity .2s,transform .2s;
+}
+.clickable:hover::after{opacity:1;transform:scale(1.2);}
+.clickable:hover{border-color:rgba(201,168,76,0.5)!important;}
+
+/* ═══════════════════════════════════════════
+   THEME TOGGLE
+═══════════════════════════════════════════ */
+#theme-btn{
+  position:fixed;bottom:30px;right:30px;z-index:9997;
+  width:52px;height:52px;border-radius:50%;
+  background:var(--gold);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;box-shadow:0 4px 20px rgba(201,168,76,0.5);
+  transition:transform .25s,box-shadow .25s;
+}
+#theme-btn:hover{transform:scale(1.12);box-shadow:0 6px 30px rgba(201,168,76,0.7);}
+
+/* ═══════════════════════════════════════════
+   COVER
+═══════════════════════════════════════════ */
+.cover{
+  min-height:100vh;background:#07111F;
+  display:grid;grid-template-columns:1fr 1fr;
+  overflow:hidden;position:relative;
+}
+.cover-left{
+  position:relative;display:flex;flex-direction:column;
+  justify-content:center;padding:80px 60px 80px 70px;z-index:2;
+}
+.cover-left::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,#07111F 60%,rgba(201,168,76,0.07) 100%);z-index:-1;
+}
+.cover-right{
+  position:relative;
+  background:linear-gradient(160deg,#0B1D35 0%,#071325 60%,#03080F 100%);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.cover-right::before{
+  content:'';position:absolute;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,76,0.1) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+}
+.compass-wrap{position:relative;width:320px;height:320px;}
+.c-ring{
+  position:absolute;border-radius:50%;border:1px solid var(--ring);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:spin-slow 60s linear infinite;
+}
+.c-ring:nth-child(1){width:300px;height:300px;border-style:dashed;}
+.c-ring:nth-child(2){width:240px;height:240px;border-color:rgba(201,168,76,0.2);animation-duration:40s;animation-direction:reverse;}
+.c-ring:nth-child(3){width:180px;height:180px;border-color:rgba(201,168,76,0.3);animation-duration:25s;}
+@keyframes spin-slow{to{transform:translate(-50%,-50%) rotate(360deg);}}
+.c-center{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:110px;height:110px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,76,0.2),rgba(201,168,76,0.03));
+  border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+}
+.c-center .big-letter{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;color:var(--gold2);line-height:1;}
+.c-center small{font-size:9px;letter-spacing:3px;color:var(--gold);font-weight:600;}
+.c-cardinal{position:absolute;font-family:'Bebas Neue',cursive;font-size:16px;color:rgba(201,168,76,0.6);letter-spacing:2px;}
+.c-cardinal.N{top:0;left:50%;transform:translateX(-50%);}
+.c-cardinal.S{bottom:0;left:50%;transform:translateX(-50%);}
+.c-cardinal.E{right:0;top:50%;transform:translateY(-50%);}
+.c-cardinal.W{left:0;top:50%;transform:translateY(-50%);}
+.cover-eyebrow{font-family:'Bebas Neue',cursive;font-size:12px;letter-spacing:6px;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.cover-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--gold);}
+.cover-main-title{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,6vw,86px);font-weight:700;color:#FFFFFF;line-height:.92;margin-bottom:18px;}
+.cover-main-title em{font-style:italic;color:var(--gold2);display:block;}
+.cover-subtitle{font-family:'Outfit',sans-serif;font-size:15px;color:rgba(255,255,255,0.5);letter-spacing:.5px;font-weight:300;margin-bottom:36px;line-height:1.6;max-width:420px;}
+.cover-tagline{font-family:'DM Serif Display',serif;font-size:clamp(16px,2vw,20px);color:rgba(255,255,255,.85);font-style:italic;padding:20px 24px;border-left:3px solid var(--gold);background:rgba(201,168,76,.06);border-radius:0 8px 8px 0;max-width:480px;line-height:1.55;}
+.cover-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px;}
+.cpill{background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:24px;padding:7px 18px;font-size:12px;color:var(--gold2);font-weight:600;letter-spacing:.5px;}
+.cover-author{margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:rgba(255,255,255,.35);letter-spacing:.5px;}
+.cover-author span{color:var(--gold);}
+@media(max-width:768px){
+  .cover{grid-template-columns:1fr;}
+  .cover-right{height:280px;order:-1;}
+  .cover-left{padding:50px 28px 60px;}
+  .compass-wrap{width:220px;height:220px;}
+  .c-ring:nth-child(1){width:210px;height:210px;}
+  .c-ring:nth-child(2){width:165px;height:165px;}
+  .c-ring:nth-child(3){width:120px;height:120px;}
+  .c-center{width:80px;height:80px;}
+  .c-center .big-letter{font-size:30px;}
+}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav{
+  position:sticky;top:0;z-index:900;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  background:var(--nav-bg);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;
+  transition:background .4s;
+}
+nav::-webkit-scrollbar{display:none;}
+.nav-logo{font-family:'Bebas Neue',cursive;font-size:22px;color:var(--gold);letter-spacing:3px;padding:14px 26px;border-right:1px solid var(--border2);white-space:nowrap;cursor:pointer;}
+nav a{
+  padding:14px 18px;font-size:12px;font-weight:600;letter-spacing:.5px;
+  color:var(--text2);text-decoration:none;transition:color .2s,background .2s;
+  white-space:nowrap;border-radius:0;position:relative;
+}
+nav a:hover{color:var(--gold);}
+nav a.active{color:var(--gold);}
+nav a::after{
+  content:'';position:absolute;bottom:0;left:18px;right:18px;
+  height:2px;background:var(--gold);border-radius:2px;
+  transform:scaleX(0);transition:transform .2s;
+}
+nav a:hover::after,nav a.active::after{transform:scaleX(1);}
+.nav-partner-btn{
+  margin-left:auto;margin-right:16px;
+  background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);
+  border-radius:20px;padding:7px 18px;font-size:11px;font-weight:700;
+  color:var(--gold);cursor:pointer;white-space:nowrap;letter-spacing:.5px;
+  transition:background .2s;
+}
+.nav-partner-btn:hover{background:rgba(201,168,76,.25);}
+
+/* ═══════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════ */
+.wrap{max-width:1040px;margin:0 auto;padding:0 32px;}
+section{padding:80px 0 60px;border-bottom:1px solid var(--border2);}
+
+/* ═══════════════════════════════════════════
+   SECTION HEADER
+═══════════════════════════════════════════ */
+.sh-eyebrow{font-family:'Bebas Neue',cursive;font-size:11px;letter-spacing:6px;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.sh-eyebrow::after{content:'';flex:1;max-width:60px;height:1px;background:var(--gold);opacity:.5;}
+.sh-title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,46px);font-weight:700;color:var(--text);line-height:1.15;margin-bottom:18px;}
+.sh-title em{color:var(--gold2);font-style:italic;}
+.sh-lead{font-size:16px;color:var(--text2);max-width:820px;line-height:1.85;margin-bottom:36px;}
+
+/* ═══════════════════════════════════════════
+   CARDS
+═══════════════════════════════════════════ */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px;margin:28px 0;}
+.card{
+  background:var(--card);border:1px solid var(--border2);border-top:2px solid var(--gold);
+  border-radius:14px;padding:28px 26px;box-shadow:var(--shadow2);
+  transition:transform .25s,box-shadow .25s,border-color .25s;
+}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-top-color:var(--gold2);}
+.card .ci{font-size:30px;margin-bottom:14px;}
+.card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--text);margin-bottom:10px;}
+.card p{font-size:14px;color:var(--text2);line-height:1.7;}
+
+/* ═══════════════════════════════════════════
+   MONETISASI
+═══════════════════════════════════════════ */
+.mega-mono{
+  background:linear-gradient(135deg,#07111F,#0D1E33 60%,#07111F);
+  padding:90px 0;border-bottom:1px solid var(--border2);
+  position:relative;overflow:hidden;
+}
+[data-theme="light"] .mega-mono{background:linear-gradient(135deg,#0B1D35,#122548 60%,#0B1D35);}
+.mega-mono::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.06) 0%,transparent 70%);}
+.mega-mono::after{content:'';position:absolute;bottom:-200px;left:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(30,111,191,.08) 0%,transparent 70%);}
+.mono-header{text-align:center;margin-bottom:60px;position:relative;z-index:2;}
+.mono-header .sh-eyebrow{justify-content:center;}
+.mono-header .sh-eyebrow::after{display:none;}
+.mono-header .sh-title{color:#FFFFFF;}
+.bridge-diagram{position:relative;z-index:2;max-width:960px;margin:0 auto 70px;padding:0 32px;}
+.bridge-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;margin-bottom:40px;}
+.bridge-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px 24px;text-align:center;}
+.bridge-box .bb-icon{font-size:36px;margin-bottom:10px;}
+.bridge-box h3{font-family:'Cormorant Garamond',serif;font-size:20px;color:#FFFFFF;font-weight:700;margin-bottom:8px;}
+.bridge-box p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6;}
+.bridge-center{display:flex;flex-direction:column;align-items:center;gap:8px;}
+.bc-logo{width:80px;height:80px;border-radius:50%;border:2px solid var(--gold);background:rgba(201,168,76,.1);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:22px;color:var(--gold2);letter-spacing:2px;}
+.bc-arrow{color:var(--gold);font-size:20px;opacity:.7;}
+.mono-streams{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;position:relative;z-index:2;max-width:960px;margin:0 auto;padding:0 32px;}
+.mono-stream{
+  background:rgba(255,255,255,.035);border:1px solid rgba(201,168,76,.2);
+  border-radius:14px;padding:26px 22px;position:relative;overflow:hidden;
+  transition:transform .25s,border-color .25s;cursor:pointer;
+}
+.mono-stream:hover{transform:translateY(-4px);border-color:rgba(201,168,76,.5);}
+.mono-stream::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));}
+.mono-stream .ms-num{font-family:'Bebas Neue',cursive;font-size:44px;color:rgba(201,168,76,.15);position:absolute;top:16px;right:16px;line-height:1;}
+.mono-stream h4{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--gold2);margin-bottom:8px;line-height:1.3;}
+.mono-stream p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.65;}
+.mono-stream .ms-badge{display:inline-block;margin-top:12px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.5px;}
+.mono-potential{position:relative;z-index:2;max-width:960px;margin:50px auto 0;padding:0 32px;}
+.mp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;}
+.mp-card{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:24px 18px;text-align:center;}
+.mp-card .mpn{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:var(--gold2);line-height:1;display:block;margin-bottom:6px;}
+.mp-card .mpl{font-size:12px;color:rgba(255,255,255,.55);line-height:1.5;}
+.mp-card .mps{font-size:10px;color:rgba(255,255,255,.25);display:block;margin-top:4px;}
+@media(max-width:700px){.mono-streams{grid-template-columns:1fr 1fr;}.bridge-top{grid-template-columns:1fr;}.bridge-center{flex-direction:row;}}
+@media(max-width:480px){.mono-streams{grid-template-columns:1fr;}}
+
+/* ═══════════════════════════════════════════
+   PROSPEK
+═══════════════════════════════════════════ */
+.stats-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin:32px 0;}
+.stat-tile{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px 18px;text-align:center;box-shadow:var(--shadow2);transition:transform .2s;cursor:pointer;}
+.stat-tile:hover{transform:translateY(-3px);}
+.st-num{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:var(--gold2);line-height:1;display:block;margin-bottom:6px;}
+.st-label{font-size:12px;color:var(--text2);line-height:1.5;}
+.st-src{font-size:10px;color:var(--text3);display:block;margin-top:4px;}
+.prospek-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px;margin:32px 0;}
+.pk-card{background:var(--card);border:1px solid var(--border2);border-radius:16px;padding:32px 28px;box-shadow:var(--shadow2);position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s;cursor:pointer;}
+.pk-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);}
+.pk-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));}
+.pk-card.accent2::after{background:linear-gradient(90deg,#1A6B8A,#4ABCE8);}
+.pk-card.accent3::after{background:linear-gradient(90deg,#1A6B45,#4ABA80);}
+.pk-tag{font-family:'Bebas Neue',cursive;font-size:10px;letter-spacing:4px;color:var(--text3);margin-bottom:10px;}
+.pk-card h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:12px;}
+.pk-big{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:700;color:var(--gold2);line-height:1;display:block;margin:8px 0 6px;}
+.pk-card.accent2 .pk-big{color:#4ABCE8;}
+.pk-card.accent3 .pk-big{color:#4ABA80;}
+.pk-card p{font-size:14px;color:var(--text2);line-height:1.7;}
+
+/* ═══════════════════════════════════════════
+   FLOW
+═══════════════════════════════════════════ */
+.flow-wrap{display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr;align-items:stretch;gap:0;margin:36px 0;}
+.flow-box{background:var(--card);border:1px solid var(--border2);border-top:3px solid var(--gold);border-radius:14px;padding:28px 24px;box-shadow:var(--shadow2);}
+.flow-box h3{font-family:'Bebas Neue',cursive;font-size:16px;letter-spacing:4px;color:var(--gold);margin-bottom:16px;}
+.flow-box ul{list-style:none;}
+.flow-box li{font-size:14px;color:var(--text2);padding:5px 0 5px 18px;position:relative;border-bottom:1px solid var(--border2);}
+.flow-box li::before{content:'▸';position:absolute;left:0;color:var(--gold);font-size:11px;top:8px;}
+.flow-arrow{display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:22px;}
+@media(max-width:700px){.flow-wrap{grid-template-columns:1fr;gap:16px;}.flow-arrow{transform:rotate(90deg);height:30px;}}
+
+/* ═══════════════════════════════════════════
+   ORG CHART — FULL REDESIGN WITH CLICKABLE
+═══════════════════════════════════════════ */
+.org-tree{display:flex;flex-direction:column;align-items:center;gap:0;margin:40px 0;}
+.org-level{display:flex;flex-direction:column;align-items:center;width:100%;}
+
+/* Connector lines */
+.org-vline{width:2px;height:30px;background:linear-gradient(to bottom,var(--gold),rgba(201,168,76,.4));opacity:.7;flex-shrink:0;}
+.org-hbar{
+  display:flex;align-items:flex-start;justify-content:center;
+  width:100%;position:relative;padding:0 20px;
+}
+.org-hbar::before{
+  content:'';position:absolute;
+  top:0;left:50%;transform:translateX(-50%);
+  width:2px;height:28px;background:rgba(201,168,76,.5);
+}
+.org-branch-row{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  position:relative;padding-top:28px;
+}
+/* Horizontal connector above branch row */
+.org-branch-row::before{
+  content:'';position:absolute;
+  top:0;left:20%;right:20%;
+  height:2px;background:rgba(201,168,76,.3);
+}
+
+.org-top-node{
+  background:linear-gradient(135deg,#0B1D35,#122548);
+  border:2px solid var(--gold);border-radius:16px;
+  padding:22px 48px;text-align:center;
+  cursor:pointer;transition:box-shadow .25s,transform .25s;
+  box-shadow:0 0 0 0 rgba(201,168,76,0);
+}
+.org-top-node:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(201,168,76,.25);}
+[data-theme="light"] .org-top-node{background:linear-gradient(135deg,#0B1D35,#1A3A6B);}
+.ot-role{font-family:'Bebas Neue',cursive;font-size:11px;letter-spacing:4px;color:var(--gold);margin-bottom:6px;}
+.ot-name{font-size:18px;font-weight:700;color:#FFFFFF;}
+.ot-note{font-size:12px;color:rgba(255,255,255,.5);margin-top:3px;}
+.ot-click{font-size:10px;color:rgba(201,168,76,.6);margin-top:6px;letter-spacing:1px;}
+
+.org-mid-node{
+  background:var(--card2);border:1px solid var(--border);border-radius:12px;
+  padding:18px 40px;text-align:center;
+  cursor:pointer;transition:transform .2s,box-shadow .2s;
+}
+.org-mid-node:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(201,168,76,.2);}
+.om-role{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:2px;margin-bottom:4px;}
+.om-name{font-size:15px;color:var(--text);font-weight:600;}
+
+/* Individual org nodes */
+.org-node{
+  background:var(--card);border:1px solid var(--border2);
+  border-top:3px solid var(--gold);border-radius:12px;
+  padding:18px 16px;text-align:center;
+  width:162px;box-shadow:var(--shadow2);
+  cursor:pointer;transition:transform .25s,box-shadow .25s,border-color .25s;
+  position:relative;
+}
+.org-node:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(201,168,76,.4);}
+.org-node::after{
+  content:'📋';position:absolute;top:8px;right:10px;
+  font-size:12px;opacity:.4;transition:opacity .2s;
+}
+.org-node:hover::after{opacity:1;}
+.on-icon{font-size:28px;margin-bottom:8px;}
+.on-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.on-role{font-size:11px;color:var(--text3);line-height:1.4;}
+.on-tag{
+  display:inline-block;margin-top:8px;
+  background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);
+  border-radius:20px;padding:3px 10px;font-size:10px;color:var(--gold);font-weight:600;
+}
+
+.org-node.color-mktg{border-top-color:#4ABCE8;}
+.org-node.color-ops{border-top-color:#F5A623;}
+.org-node.color-edu{border-top-color:#7EC8A0;}
+.org-node.color-biz{border-top-color:#E8C876;}
+.org-node.color-dig{border-top-color:#B48EF5;}
+
+/* Responsibility bar */
+.resp-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.rb-tag{background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-size:10px;color:var(--text3);}
+
+/* ═══════════════════════════════════════════
+   ROADMAP
+═══════════════════════════════════════════ */
+.tl{position:relative;padding-left:40px;margin:36px 0;}
+.tl::before{content:'';position:absolute;left:14px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),rgba(201,168,76,.1));border-radius:2px;}
+.tl-item{margin-bottom:40px;position:relative;}
+.tl-dot{position:absolute;left:-33px;top:5px;width:18px;height:18px;border-radius:50%;background:var(--gold);border:3px solid var(--bg);box-shadow:0 0 0 3px rgba(201,168,76,.3);}
+.tl-phase{font-family:'Bebas Neue',cursive;font-size:11px;letter-spacing:4px;color:var(--gold);margin-bottom:6px;}
+.tl-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px;}
+.tl-desc{font-size:14px;color:var(--text2);line-height:1.7;}
+.tl-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.chip{background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--text2);font-weight:600;}
+
+/* ═══════════════════════════════════════════
+   SWOT
+═══════════════════════════════════════════ */
+.swot-wrap{display:grid;grid-template-columns:1fr 1fr;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);margin:30px 0;}
+.sw-cell{padding:36px 32px;}
+.sw-cell.S{background:var(--swot-s);}
+.sw-cell.W{background:var(--swot-w);}
+.sw-cell.O{background:var(--swot-o);}
+.sw-cell.T{background:var(--swot-t);}
+.sw-cell .sc-label{font-size:10px;letter-spacing:4px;font-weight:600;color:rgba(255,255,255,.35);margin-bottom:6px;}
+.sw-cell h3{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;margin-bottom:20px;}
+.sw-cell.S h3,.sw-cell.W h3{color:var(--gold2);}
+.sw-cell.O h3{color:#7EC8A0;}
+.sw-cell.T h3{color:#F08080;}
+.sw-cell ul{list-style:none;}
+.sw-cell li{font-size:13px;color:rgba(255,255,255,.8);padding:6px 0 6px 20px;position:relative;border-bottom:1px solid rgba(255,255,255,.05);line-height:1.55;}
+.sw-cell li::before{content:'';position:absolute;left:0;top:14px;width:7px;height:7px;border-radius:50%;background:var(--gold);}
+.sw-cell.O li::before{background:#7EC8A0;}
+.sw-cell.T li::before{background:#F08080;}
+@media(max-width:600px){.swot-wrap{grid-template-columns:1fr;}}
+
+/* ═══════════════════════════════════════════
+   PARTNER LINKS SECTION
+═══════════════════════════════════════════ */
+.partner-section{padding:70px 0 60px;border-bottom:1px solid var(--border2);}
+.partner-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;}
+.ptab{
+  background:var(--card2);border:1px solid var(--border2);border-radius:24px;
+  padding:8px 22px;font-size:12px;font-weight:700;letter-spacing:.5px;
+  color:var(--text2);cursor:pointer;transition:all .2s;
+}
+.ptab.active,.ptab:hover{background:var(--gold);color:#07111F;border-color:var(--gold);}
+.partner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+.pcard{
+  background:var(--card);border:1px solid var(--border2);border-radius:14px;
+  padding:20px 18px;text-decoration:none;
+  display:flex;flex-direction:column;gap:6px;
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+}
+.pcard:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:var(--shadow2);}
+.pcard-cat{font-size:10px;letter-spacing:3px;font-weight:700;color:var(--text3);}
+.pcard-flag{font-size:20px;}
+.pcard-name{font-size:15px;font-weight:700;color:var(--text);line-height:1.2;}
+.pcard-url{font-size:11px;color:var(--gold);}
+.pcard-desc{font-size:12px;color:var(--text2);line-height:1.5;margin-top:2px;}
+.pcard-badge{
+  display:inline-block;margin-top:6px;
+  background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);
+  border-radius:20px;padding:3px 10px;font-size:10px;color:var(--gold);font-weight:600;
+}
+.partner-pane{display:none;}
+.partner-pane.active{display:block;}
+
+/* ═══════════════════════════════════════════
+   FAQ
+═══════════════════════════════════════════ */
+.faq-item{background:var(--faq-bg);border:1px solid var(--border2);border-left:4px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow2);transition:border-left-color .2s;}
+.faq-item.open{border-left-color:var(--gold);}
+.faq-btn{width:100%;text-align:left;padding:20px 24px;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;color:var(--text);}
+.faq-icon{width:28px;height:28px;border-radius:50%;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--gold);flex-shrink:0;transition:transform .3s,background .3s;}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--gold);color:#07111F;}
+.faq-body{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;padding:0 24px;}
+.faq-body.open{max-height:600px;padding:0 24px 22px;}
+.faq-body p,.faq-body li{font-size:14px;color:var(--text2);line-height:1.8;}
+.faq-body ul{margin:10px 0 0 18px;}
+
+/* ═══════════════════════════════════════════
+   TABLE
+═══════════════════════════════════════════ */
+.tbl-wrap{overflow-x:auto;margin:24px 0;border-radius:12px;overflow:hidden;box-shadow:var(--shadow2);}
+table{width:100%;border-collapse:collapse;font-size:14px;}
+thead tr{background:var(--table-h);color:#FFFFFF;}
+thead th{padding:14px 18px;text-align:left;font-weight:600;font-size:12px;letter-spacing:.5px;}
+tbody tr{background:var(--table-o);border-bottom:1px solid var(--border2);transition:background .15s;}
+tbody tr:nth-child(even){background:var(--table-e);}
+tbody tr:hover{background:var(--card2);}
+tbody td{padding:13px 18px;color:var(--text2);}
+
+/* ═══════════════════════════════════════════
+   HIGHLIGHT / INFO
+═══════════════════════════════════════════ */
+.hl-box{background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(30,111,191,.08));border:1px solid var(--border);border-radius:14px;padding:32px 36px;margin:28px 0;position:relative;overflow:hidden;}
+.hl-box::before{content:'⚓';position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:90px;opacity:.05;}
+.hl-box p{font-family:'DM Serif Display',serif;font-size:clamp(15px,2.5vw,21px);font-style:italic;color:var(--text);line-height:1.6;}
+.hl-box cite{display:block;margin-top:12px;font-family:'Outfit',sans-serif;font-style:normal;font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1px;}
+.info-call{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:18px 22px;margin:20px 0;font-size:14px;color:var(--text2);line-height:1.7;}
+.info-call strong{color:var(--gold);}
+
+/* ═══════════════════════════════════════════
+   CLOSING
+═══════════════════════════════════════════ */
+.closing-section{background:linear-gradient(160deg,#07111F 0%,#0D1E33 50%,#07111F 100%);padding:100px 0 80px;text-align:center;position:relative;overflow:hidden;}
+[data-theme="light"] .closing-section{background:linear-gradient(160deg,#0B1D35 0%,#122548 50%,#0B1D35 100%);}
+.closing-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.06) 0%,transparent 70%);}
+.closing-section h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,58px);font-weight:700;color:var(--gold2);margin-bottom:20px;position:relative;z-index:2;line-height:1.15;}
+.closing-section .cl-sub{font-size:17px;color:rgba(255,255,255,.6);max-width:580px;margin:0 auto 40px;line-height:1.75;position:relative;z-index:2;}
+.closing-section .cl-quote{font-family:'DM Serif Display',serif;font-size:clamp(18px,3vw,26px);color:var(--gold);font-style:italic;max-width:680px;margin:0 auto;padding:30px 40px;border:1px solid rgba(201,168,76,.25);border-radius:14px;background:rgba(201,168,76,.04);line-height:1.6;position:relative;z-index:2;}
+.footer{background:#050D19;border-top:1px solid rgba(255,255,255,.06);padding:22px 32px;text-align:center;font-size:12px;color:rgba(255,255,255,.25);letter-spacing:.5px;}
+.footer span{color:var(--gold);}
+
+/* ═══════════════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════════════ */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:rgba(201,168,76,.3);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     MODAL OVERLAY
+══════════════════════════════════════════ -->
+<div id="modal-overlay" onclick="closeModal()">
+  <div id="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-content" class="modal-body"></div>
+  </div>
+</div>
+
+<!-- THEME TOGGLE -->
+<button id="theme-btn" onclick="toggleTheme()" title="Toggle tema">☀️</button>
+
+<!-- ══════════════════════════════════════════
+     COVER
+══════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-left">
+    <div class="cover-eyebrow">PROPOSAL RESMI YAYASAN 2026</div>
+    <h1 class="cover-main-title">
+      M.E.C
+      <em>Maritime English</em>
+      Course
+    </h1>
+    <p class="cover-subtitle">
+      Training Center & Talent Bridge Maritim dan Hospitality<br>
+      Kampung Inggris Pare, Kediri — Indonesia
+    </p>
+    <div class="cover-tagline">
+      "Membangun jalur nyata dari pelatihan menuju karir global — dari pelaut, untuk pelaut."
+    </div>
+    <div class="cover-pills">
+      <span class="cpill">🚢 Merchant Shipping</span>
+      <span class="cpill">⛽ Offshore</span>
+      <span class="cpill">🛳️ Cruise Line</span>
+      <span class="cpill">🏨 Hospitality</span>
+    </div>
+    <div class="cover-author">
+      Disusun oleh <span>Tim Ravindo</span> · <span>Rafael Sukirno, CE</span> et al.<br>
+      Kampung Inggris Pare · Kediri · Jawa Timur · <span>2026</span>
+    </div>
+  </div>
+  <div class="cover-right">
+    <div class="compass-wrap">
+      <div class="c-ring"></div>
+      <div class="c-ring"></div>
+      <div class="c-ring"></div>
+      <div class="c-cardinal N">N</div>
+      <div class="c-cardinal S">S</div>
+      <div class="c-cardinal E">E</div>
+      <div class="c-cardinal W">W</div>
+      <div class="c-center">
+        <span class="big-letter">M</span>
+        <small>E · C</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     NAV
+══════════════════════════════════════════ -->
+<nav id="main-nav">
+  <div class="nav-logo" onclick="scrollTop()">M.E.C</div>
+  <a href="#latbel">Latar Belakang</a>
+  <a href="#prospek">Prospek</a>
+  <a href="#monetisasi">Monetisasi</a>
+  <a href="#visi">Visi & Misi</a>
+  <a href="#bisnis">Model Bisnis</a>
+  <a href="#organisasi">Tim</a>
+  <a href="#roadmap">Roadmap</a>
+  <a href="#swot">SWOT</a>
+  <a href="#mitra">Mitra</a>
+  <a href="#faq">FAQ</a>
+  <button class="nav-partner-btn" onclick="openModal('partnerLinks')">🔗 Partner & Institusi</button>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     01. LATAR BELAKANG
+══════════════════════════════════════════ -->
+<section id="latbel">
+  <div class="wrap">
+    <div class="sh-eyebrow">01 · LATAR BELAKANG</div>
+    <h2 class="sh-title">Satu Kesenjangan Besar<br>yang <em>Belum Dijembatani</em></h2>
+    <p class="sh-lead">
+      Kampung Inggris Pare adalah ekosistem luar biasa — ratusan lembaga kursus, puluhan ribu peserta per tahun, dan budaya belajar bahasa yang telah matang selama puluhan tahun. Namun di tengah geliat ini, terdapat satu celah yang belum tersentuh: tidak satu pun lembaga yang secara serius dan sistematis menyiapkan tenaga kerja untuk industri maritim dan hospitality global.
+    </p>
+
+    <div class="card-grid">
+      <div class="card clickable" onclick="openModal('latbel1')">
+        <div class="ci">🌊</div>
+        <h3>Permintaan Industri Melonjak</h3>
+        <p>Shipping global, offshore oil & gas, cruise line, dan hospitality internasional — semua membutuhkan tenaga yang fasih dalam Maritime English standar IMO SMCP.</p>
+      </div>
+      <div class="card clickable" onclick="openModal('latbel2')">
+        <div class="ci">🧑‍✈️</div>
+        <h3>Pelaut Indonesia Terkendala Bahasa</h3>
+        <p>Riset 2026 mengkonfirmasi: pelaut Indonesia mengalami hambatan signifikan dalam pilihan kata, aksen, dan konstruksi kalimat saat berkomunikasi di atas kapal internasional.</p>
+      </div>
+      <div class="card clickable" onclick="openModal('latbel3')">
+        <div class="ci">🎯</div>
+        <h3>Pare: Ekosistem yang Siap</h3>
+        <p>Infrastruktur sosial, budaya belajar, dan jaringan mitra di Kampung Inggris sudah ada. Yang belum ada adalah lembaga yang menggunakannya untuk tujuan jauh lebih besar.</p>
+      </div>
+      <div class="card clickable" onclick="openModal('latbel4')">
+        <div class="ci">🔗</div>
+        <h3>M.E.C: Jembatan Nyata</h3>
+        <p>M.E.C hadir bukan sebagai kursus biasa, melainkan ekosistem terintegrasi yang menghubungkan pelatihan berbasis industri dengan penempatan kerja nyata di pasar internasional.</p>
+      </div>
+    </div>
+
+    <div class="hl-box">
+      <p>"Indonesia adalah pemasok pelaut terbesar keempat dunia dengan 140.000+ seafarer aktif — namun potensi besar ini belum dioptimalkan karena kesenjangan kompetensi Maritime English yang masif."</p>
+      <cite>— Marine Insight · BIMCO Report · ILO Skills for Prosperity Indonesia · Data 2026</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     02. PROSPEK PASAR
+══════════════════════════════════════════ -->
+<section id="prospek">
+  <div class="wrap">
+    <div class="sh-eyebrow">02 · PROSPEK & POTENSI PASAR</div>
+    <h2 class="sh-title">Pasar yang <em>Masif & Terbuka</em><br>Menunggu untuk Diisi</h2>
+    <p class="sh-lead">
+      Krisis SDM maritim global bukan prediksi masa depan — ini realita hari ini. Industri kekurangan puluhan ribu officer bersertifikat, sementara 800.000 seafarer perlu upskilling dalam satu dekade ke depan.
+    </p>
+
+    <div class="stats-strip">
+      <div class="stat-tile" onclick="openModal('stat1')">
+        <span class="st-num">140K+</span>
+        <span class="st-label">Pelaut aktif Indonesia officer + ratings</span>
+        <span class="st-src">BIMCO 2026 ↗</span>
+      </div>
+      <div class="stat-tile" onclick="openModal('stat2')">
+        <span class="st-num">16.500</span>
+        <span class="st-label">Kekurangan officer global saat ini</span>
+        <span class="st-src">Crew Mgmt Market 2026 ↗</span>
+      </div>
+      <div class="stat-tile" onclick="openModal('stat3')">
+        <span class="st-num">800K</span>
+        <span class="st-label">Seafarer butuh upskilling sebelum 2035</span>
+        <span class="st-src">Indonesia OSV Report ↗</span>
+      </div>
+      <div class="stat-tile" onclick="openModal('stat4')">
+        <span class="st-num">$2.4B</span>
+        <span class="st-label">Proyeksi pasar maritime crew mgmt 2032</span>
+        <span class="st-src">IntelMarketResearch ↗</span>
+      </div>
+      <div class="stat-tile" onclick="openModal('stat5')">
+        <span class="st-num">15.4%</span>
+        <span class="st-label">CAGR maritime training app 2024–2033</span>
+        <span class="st-src">HTF Market Intelligence ↗</span>
+      </div>
+    </div>
+
+    <div class="prospek-grid">
+      <div class="pk-card clickable" onclick="openModal('prospek1')">
+        <div class="pk-tag">SEGMEN UTAMA · MERCHANT SHIPPING</div>
+        <h3>Kapal Niaga Internasional</h3>
+        <span class="pk-big">#4</span>
+        <p>Indonesia adalah pemasok pelaut ke-4 terbesar dunia. Permintaan officer dengan Maritime English terus meningkat, sementara lulusan MET belum mampu memenuhi standar komunikasi internasional.</p>
+      </div>
+      <div class="pk-card accent2 clickable" onclick="openModal('prospek2')">
+        <div class="pk-tag">SEGMEN TUMBUH · OFFSHORE</div>
+        <h3>Offshore Oil, Gas & Wind Energy</h3>
+        <span class="pk-big">54</span>
+        <p>Blok migas baru yang ditawarkan pemerintah 2024–2028 ditambah ekspansi energi angin lepas pantai menciptakan lonjakan kebutuhan tenaga offshore berbahasa Inggris teknis.</p>
+      </div>
+      <div class="pk-card accent3 clickable" onclick="openModal('prospek3')">
+        <div class="pk-tag">SEGMEN PREMIUM · CRUISE & HOSPITALITY</div>
+        <h3>Cruise Line & Hospitality Internasional</h3>
+        <span class="pk-big">6.9%</span>
+        <p>CAGR pasar maritime crew management hingga 2032. Cruise line dan hospitality premium adalah segmen paling menarik secara finansial — gaji hingga 5× rata-rata nasional.</p>
+      </div>
+    </div>
+
+    <div class="info-call">
+      <strong>Keunggulan Kompetitif Pare:</strong> Kampung Inggris menarik 50.000–100.000 peserta per tahun dari seluruh Indonesia. Dengan mengintegrasikan Maritime English ke dalam ekosistem ini, M.E.C memiliki pipeline peserta yang organik, besar, dan berkelanjutan.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     03. MONETISASI
+══════════════════════════════════════════ -->
+<div class="mega-mono" id="monetisasi">
+  <div class="mono-header wrap">
+    <div class="sh-eyebrow" style="justify-content:center;color:var(--gold2);">03 · POTENSI MONETISASI</div>
+    <h2 class="sh-title" style="color:#FFFFFF;text-align:center;">Kampung Inggris + Maritim =<br><em>Ekosistem Penghasil Devisa</em></h2>
+    <p class="sh-lead" style="color:rgba(255,255,255,.6);text-align:center;margin:0 auto 0;">
+      Tidak ada lembaga lain di Indonesia yang menggabungkan reputasi Kampung Inggris dengan kebutuhan nyata industri maritim global. Ini adalah mesin penempatan kerja internasional berpotensi ratusan juta rupiah per tahun.
+    </p>
+  </div>
+
+  <div class="bridge-diagram">
+    <div class="bridge-top">
+      <div class="bridge-box">
+        <div class="bb-icon">🏙️</div>
+        <h3>Ekosistem Pare</h3>
+        <p>500+ lembaga kursus · 50K–100K peserta/tahun · Infrastruktur belajar bahasa terbangun · Biaya hidup rendah · Brand nasional kuat</p>
+      </div>
+      <div class="bridge-center">
+        <div class="bc-arrow">→</div>
+        <div class="bc-logo">M.E.C</div>
+        <div class="bc-arrow">→</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bb-icon">🌏</div>
+        <h3>End User Industri</h3>
+        <p>Kapal merchant · Offshore oil & gas · Cruise line · Hotel internasional · Crewing agent · Perusahaan pelayaran BUMN/swasta</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono-streams">
+    <div class="mono-stream" onclick="openModal('mono1')">
+      <span class="ms-num">01</span>
+      <h4>Biaya Program Pelatihan</h4>
+      <p>Kursus reguler Maritime English intensif 2–4 minggu hingga program 3 bulan. Pricing Rp1,5–4 juta/peserta. Target 40–100 peserta/batch.</p>
+      <span class="ms-badge">PRIMARY REVENUE</span>
+    </div>
+    <div class="mono-stream" onclick="openModal('mono2')">
+      <span class="ms-num">02</span>
+      <h4>Placement Fee dari Industri</h4>
+      <p>Komisi dari crewing agent atau shipping company per kandidat berhasil ditempatkan. Rp2–8 juta/kandidat internasional.</p>
+      <span class="ms-badge">HIGH VALUE</span>
+    </div>
+    <div class="mono-stream" onclick="openModal('mono3')">
+      <span class="ms-num">03</span>
+      <h4>Corporate Training</h4>
+      <p>Pelatihan in-house untuk BUMN maritim, crewing agent, atau perusahaan pelayaran yang ingin upgrade kompetensi kru eksisting.</p>
+      <span class="ms-badge">RECURRING</span>
+    </div>
+    <div class="mono-stream" onclick="openModal('mono4')">
+      <span class="ms-num">04</span>
+      <h4>Kerjasama Institusi MET</h4>
+      <p>Kontrak penyediaan modul Maritime English untuk POLTEKPEL, universitas maritim, dan SMK pelayaran. Revenue berbasis royalti.</p>
+      <span class="ms-badge">SCALABLE</span>
+    </div>
+    <div class="mono-stream" onclick="openModal('mono5')">
+      <span class="ms-num">05</span>
+      <h4>E-Learning & Modul Digital</h4>
+      <p>Konten digital berlisensi yang dapat disubskripsi secara nasional. Jangkauan tanpa batas tanpa biaya operasional tambahan.</p>
+      <span class="ms-badge">PASSIVE INCOME</span>
+    </div>
+    <div class="mono-stream" onclick="openModal('mono6')">
+      <span class="ms-num">06</span>
+      <h4>Hibah & Subsidi Pemerintah</h4>
+      <p>Program Kemenaker, Kemenhub, dan ILO Skills for Prosperity Indonesia memberikan pendanaan untuk pelatihan SDM maritim.</p>
+      <span class="ms-badge">NON-DILUTIVE</span>
+    </div>
+  </div>
+
+  <div class="mono-potential">
+    <div class="mp-grid">
+      <div class="mp-card">
+        <span class="mpn">400+</span>
+        <span class="mpl">Lembaga kursus di Pare sebagai mitra potensial</span>
+        <span class="mps">Infrastruktur siap pakai</span>
+      </div>
+      <div class="mp-card">
+        <span class="mpn">50K</span>
+        <span class="mpl">Peserta datang ke Pare setiap tahun — pipeline alami</span>
+        <span class="mps">Tanpa biaya akuisisi masif</span>
+      </div>
+      <div class="mp-card">
+        <span class="mpn">Rp8M+</span>
+        <span class="mpl">Potensi pendapatan per placement kandidat internasional</span>
+        <span class="mps">Fee training + placement fee</span>
+      </div>
+      <div class="mp-card">
+        <span class="mpn">4 ×</span>
+        <span class="mpl">Lipatan gaji crew kapal vs rata-rata kerja darat setingkat</span>
+        <span class="mps">Daya tarik peserta sangat tinggi</span>
+      </div>
+      <div class="mp-card">
+        <span class="mpn">0</span>
+        <span class="mpl">Kompetitor langsung di segmen Maritime English di Pare saat ini</span>
+        <span class="mps">First mover advantage penuh</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     04. VISI MISI
+══════════════════════════════════════════ -->
+<section id="visi">
+  <div class="wrap">
+    <div class="sh-eyebrow">04 · IDENTITAS LEMBAGA</div>
+    <h2 class="sh-title">Visi, Misi <em>&amp; Nilai</em></h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="ci">🎯</div>
+        <h3>Visi</h3>
+        <p>Menjadi pusat pelatihan maritim dan hospitality berbasis industri yang terintegrasi dengan kebutuhan global — menjadi standar nasional Maritime English dari Kampung Inggris Pare.</p>
+      </div>
+      <div class="card">
+        <div class="ci">📋</div>
+        <h3>Misi</h3>
+        <p>Menyediakan pelatihan aplikatif berbasis IMO & STCW. Menghubungkan peserta dengan peluang kerja nyata. Membangun sistem pelatihan berstandar internasional yang berkelanjutan dan berdampak luas.</p>
+      </div>
+      <div class="card">
+        <div class="ci">⚓</div>
+        <h3>Nilai Inti</h3>
+        <p><strong>Dari Pelaut, Untuk Pelaut.</strong> Keadilan berbasis kontribusi. Transparansi tanpa kompromi. Kolaborasi lintas sektor. Berorientasi hasil — bukan sekadar proses pelatihan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     05. MODEL BISNIS
+══════════════════════════════════════════ -->
+<section id="bisnis">
+  <div class="wrap">
+    <div class="sh-eyebrow">05 · MODEL BISNIS</div>
+    <h2 class="sh-title">Ekosistem <em>Input → Proses → Output</em></h2>
+    <p class="sh-lead">Keunggulan M.E.C terletak pada integrasi vertikal yang nyata antara pelatihan dan penyaluran kerja. Peserta tidak hanya belajar Maritime English — mereka keluar dengan koneksi industri dan peluang karir konkret.</p>
+
+    <div class="flow-wrap">
+      <div class="flow-box">
+        <h3>📥 INPUT</h3>
+        <ul>
+          <li>Crew kapal lokal (officer & ratings)</li>
+          <li>Taruna / cadet akademi pelayaran</li>
+          <li>Fresh graduate MET</li>
+          <li>Tenaga hospitality (hotel, cruise)</li>
+          <li>Pencari kerja sektor offshore</li>
+        </ul>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box" style="border-top-color:#4ABCE8;">
+        <h3 style="color:#4ABCE8;">⚙️ PROSES</h3>
+        <ul>
+          <li>Maritime English (IMO SMCP)</li>
+          <li>Simulasi komunikasi onboard</li>
+          <li>Radio & VHF phraseology</li>
+          <li>Interview preparation</li>
+          <li>Soft skill & professional grooming</li>
+          <li>STCW awareness & compliance</li>
+        </ul>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box" style="border-top-color:#4ABA80;">
+        <h3 style="color:#4ABA80;">📤 OUTPUT</h3>
+        <ul>
+          <li>Siap komunikasi internasional</li>
+          <li>Siap interview perusahaan global</li>
+          <li>Masuk database kandidat aktif</li>
+          <li>Tersalurkan ke end user industri</li>
+          <li>Jaringan alumni produktif</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--text);margin:40px 0 16px;">Strategi Kerjasama End-to-End</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Mitra Strategis</th><th>Bentuk Kerjasama</th><th>Nilai bagi M.E.C</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>LPK / Lembaga Kursus Pare</td><td>Berbagi fasilitas kelas, pengajar General English, student referral</td><td>Efisiensi CAPEX & OPEX</td></tr>
+          <tr><td>POLTEKPEL & Universitas Maritim</td><td>Co-curriculum, rekrutmen taruna, co-branding resmi</td><td>Pipeline peserta terjamin</td></tr>
+          <tr><td>Shipping Company & Crewing Agent</td><td>MoU kandidat, job fair, on-site interview, placement fee</td><td>Revenue placement berskala</td></tr>
+          <tr><td>Cruise Line & Hospitality Int'l</td><td>Campus hiring, magang, program khusus hospitality</td><td>Segmen premium terbuka</td></tr>
+          <tr><td>SMK Maritim & SMA Reguler</td><td>Sosialisasi, open class, "jalur cepat ke kapal"</td><td>Rekrutmen dini & brand awareness</td></tr>
+          <tr><td>Kemenaker / Kemenhub / ILO</td><td>Subsidi pelatihan, sertifikasi resmi, program matching fund</td><td>Pendanaan non-dilutif</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     06. STRUKTUR ORGANISASI — FULL + JOB DESC
+══════════════════════════════════════════ -->
+<section id="organisasi">
+  <div class="wrap">
+    <div class="sh-eyebrow">06 · STRUKTUR ORGANISASI</div>
+    <h2 class="sh-title">Tim <em>Profesional</em> dengan Job Description Terstruktur</h2>
+    <p class="sh-lead">Klik pada setiap jabatan untuk melihat uraian tugas, tanggung jawab, dan KPI yang jelas. Setiap peran dirancang seimbang berdasarkan kontribusi nyata — tidak ada pihak pasif dalam tim M.E.C.</p>
+
+    <div class="org-tree">
+
+      <!-- Level 1: Pembina -->
+      <div class="org-level">
+        <div class="org-top-node" onclick="openModal('org_guswid')">
+          <div class="ot-role">PEMBINA YAYASAN</div>
+          <div class="ot-name">Gus Wid</div>
+          <div class="ot-note">Founder · Pendana · Pengarah Strategis</div>
+          <div class="ot-click">📋 Klik untuk job description</div>
+        </div>
+      </div>
+
+      <div class="org-vline"></div>
+
+      <!-- Level 2: Pengurus -->
+      <div class="org-level">
+        <div class="org-mid-node" onclick="openModal('org_pengurus')">
+          <div class="om-role">PENGURUS INTI YAYASAN</div>
+          <div class="om-name">Ketua · Sekretaris · Bendahara · 📋 Klik</div>
+        </div>
+      </div>
+
+      <div class="org-vline"></div>
+
+      <!-- Level 3: Tim Inti -->
+      <div class="org-branch-row" style="gap:12px;padding:0 10px;margin-top:28px;position:relative;display:flex;flex-wrap:wrap;justify-content:center;">
+        <div style="position:absolute;top:-28px;left:15%;right:15%;height:2px;background:rgba(201,168,76,.3);"></div>
+        <div style="position:absolute;top:-28px;left:50%;width:2px;height:28px;background:rgba(201,168,76,.5);"></div>
+
+        <!-- Rafael -->
+        <div class="org-node" style="border-top-color:var(--gold);" onclick="openModal('org_rafael')">
+          <div class="on-icon">⚓</div>
+          <div class="on-name">Pak Rafael, CE</div>
+          <div class="on-role">Creator & Business Development</div>
+          <div class="on-tag">FOUNDER ROLE</div>
+          <div class="resp-bar" style="justify-content:center;margin-top:8px;">
+            <span class="rb-tag">Kurikulum</span>
+            <span class="rb-tag">MoU</span>
+          </div>
+        </div>
+
+        <!-- Lutfi -->
+        <div class="org-node color-mktg" onclick="openModal('org_lutfi')">
+          <div class="on-icon">📢</div>
+          <div class="on-name">Mas Lutfi</div>
+          <div class="on-role">Head of Marketing & Education Network</div>
+          <div class="on-tag" style="border-color:rgba(74,188,232,.3);color:#4ABCE8;">MARKETING</div>
+          <div class="resp-bar" style="justify-content:center;margin-top:8px;">
+            <span class="rb-tag">Brand</span>
+            <span class="rb-tag">Enrollment</span>
+          </div>
+        </div>
+
+        <!-- Ustadz Farid -->
+        <div class="org-node color-ops" onclick="openModal('org_farid')">
+          <div class="on-icon">⚙️</div>
+          <div class="on-name">Ustadz Farid</div>
+          <div class="on-role">Head of Operations</div>
+          <div class="on-tag" style="border-color:rgba(245,166,35,.3);color:#F5A623;">OPERATIONS</div>
+          <div class="resp-bar" style="justify-content:center;margin-top:8px;">
+            <span class="rb-tag">Jadwal</span>
+            <span class="rb-tag">Logistik</span>
+          </div>
+        </div>
+
+        <!-- Ustadz Widodo -->
+        <div class="org-node color-edu" onclick="openModal('org_widodo')">
+          <div class="on-icon">📚</div>
+          <div class="on-name">Ustadz Widodo</div>
+          <div class="on-role">Head of Education & Curriculum</div>
+          <div class="on-tag" style="border-color:rgba(126,200,160,.3);color:#7EC8A0;">EDUCATION</div>
+          <div class="resp-bar" style="justify-content:center;margin-top:8px;">
+            <span class="rb-tag">Silabus</span>
+            <span class="rb-tag">Trainer</span>
+          </div>
+        </div>
+
+        <!-- Pak Manto -->
+        <div class="org-node color-biz" onclick="openModal('org_manto')">
+          <div class="on-icon">💼</div>
+          <div class="on-name">Pak Manto</div>
+          <div class="on-role">Business Support</div>
+          <div class="on-tag">BUSINESS</div>
+          <div class="resp-bar" style="justify-content:center;margin-top:8px;">
+            <span class="rb-tag">Deal</span>
+            <span class="rb-tag">Sponsor</span>
+          </div>
+        </div>
+
+        <!-- Pak Toib -->
+        <div class="org-node" onclick="openModal('org_toib')">
+          <div class="on-icon">🏗️</div>
+          <div class="on-name">Pak Toib</div>
+          <div class="on-role">Operational Support</div>
+          <div class="on-tag">SUPPORT</div>
+          <div class="resp-bar" style="justify-content:center;margin-top:8px;">
+            <span class="rb-tag">Lapangan</span>
+            <span class="rb-tag">Fasilitas</span>
+          </div>
+        </div>
+
+        <!-- Nopi & Bhakti -->
+        <div class="org-node color-dig" onclick="openModal('org_digital')">
+          <div class="on-icon">📱</div>
+          <div class="on-name">Mas Nopi & Mas Bhakti</div>
+          <div class="on-role">Digital & Marketing Support</div>
+          <div class="on-tag" style="border-color:rgba(180,142,245,.3);color:#B48EF5;">DIGITAL</div>
+          <div class="resp-bar" style="justify-content:center;margin-top:8px;">
+            <span class="rb-tag">Konten</span>
+            <span class="rb-tag">Sosmed</span>
+          </div>
+        </div>
+
+      </div><!-- end branch row -->
+
+    </div><!-- end org-tree -->
+
+    <div class="info-call" style="margin-top:36px;">
+      <strong>💡 Catatan Sistem:</strong> Setiap node dapat diklik untuk melihat job description lengkap termasuk tugas harian, tanggung jawab utama, KPI, wewenang, dan sistem insentif. Pembagian tugas dirancang seimbang agar tidak ada satu peran yang overloaded.
+    </div>
+
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--text);margin:40px 0 16px;">Sistem Distribusi Insentif</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Peran</th><th>Jenis Insentif</th><th>Basis Perhitungan</th><th>Est. Porsi</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Creator & Business Development</td><td>Fee pengembangan + bonus MoU industri</td><td>Per program / per kerjasama terlaksana</td><td>15–20%</td></tr>
+          <tr><td>Head of Marketing</td><td>Komisi pemasaran</td><td>Per peserta aktif terdaftar</td><td>12–15%</td></tr>
+          <tr><td>Head of Operations</td><td>Fee pelaksanaan program</td><td>Per program / per bulan</td><td>12–15%</td></tr>
+          <tr><td>Head of Curriculum</td><td>Honor pengembangan kurikulum</td><td>Per modul diimplementasikan</td><td>12–15%</td></tr>
+          <tr><td>Business Support</td><td>Fee identifikasi & eksekusi peluang bisnis</td><td>Per deal closed</td><td>10–12%</td></tr>
+          <tr><td>Digital & Marketing Support</td><td>Honor konten + bonus KPI sosial media</td><td>Bulanan + performa</td><td>8–10%</td></tr>
+          <tr><td>Operational Support</td><td>Gaji / fee koordinasi lapangan</td><td>Bulanan tetap</td><td>8–10%</td></tr>
+          <tr><td>Cadangan Operasional Yayasan</td><td>Reserve & reinvestment fund</td><td>Dari surplus bersih</td><td>10–15%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     07. ROADMAP
+══════════════════════════════════════════ -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="sh-eyebrow">07 · ROADMAP PENGEMBANGAN</div>
+    <h2 class="sh-title">Dari Rintisan <em>Menuju Nasional</em></h2>
+
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-phase">FASE 1 · SEMESTER 1 — 2026</div>
+        <div class="tl-title">Pembukaan & Operasional Awal</div>
+        <div class="tl-desc">Pendaftaran resmi yayasan, pengembangan kurikulum dasar Maritime English (IMO SMCP), rekrutmen trainer, dan pembukaan kelas perdana. Target: 20–40 peserta batch pertama. Mulai membangun presence media sosial dan brand awareness di komunitas Pare.</div>
+        <div class="tl-chips">
+          <span class="chip">Legalitas Yayasan</span>
+          <span class="chip">Kelas Perdana</span>
+          <span class="chip">Kurikulum Dasar</span>
+          <span class="chip">Media Sosial</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-phase">FASE 2 · SEMESTER 2 — 2026</div>
+        <div class="tl-title">Database Kandidat & Jaringan Industri</div>
+        <div class="tl-desc">Membangun database kandidat terverifikasi, menjalin MoU pertama dengan crewing agent atau shipping company, dan menggelar job fair mini perdana di Pare. Mengembangkan modul simulasi onboard dan modul persiapan interview yang lebih komprehensif.</div>
+        <div class="tl-chips">
+          <span class="chip">Database Kandidat</span>
+          <span class="chip">MoU Pertama</span>
+          <span class="chip">Job Fair</span>
+          <span class="chip">Interview Module</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-phase">FASE 3 · TAHUN 2027</div>
+        <div class="tl-title">Placement Aktif & Skalabilitas</div>
+        <div class="tl-desc">Memulai placement aktif ke kapal merchant, offshore, dan cruise. Kerjasama resmi dengan POLTEKPEL Surabaya dan universitas maritim. Peluncuran modul e-learning untuk jangkauan nasional. Mulai corporate training untuk perusahaan pelayaran.</div>
+        <div class="tl-chips">
+          <span class="chip">Placement Aktif</span>
+          <span class="chip">Kerjasama MET</span>
+          <span class="chip">E-Learning</span>
+          <span class="chip">Corporate Training</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-phase">FASE 4 · 2028+</div>
+        <div class="tl-title">Ekspansi Nasional & Pendirian PT Crewing</div>
+        <div class="tl-desc">Membentuk unit usaha PT untuk crewing & placement komersial, sementara yayasan tetap fokus pada pendidikan. Ekspansi ke kota maritim lain (Surabaya, Makassar, Balikpapan). M.E.C menjadi standar nasional Maritime English.</div>
+        <div class="tl-chips">
+          <span class="chip">PT Crewing</span>
+          <span class="chip">Ekspansi Nasional</span>
+          <span class="chip">Alumni Network</span>
+          <span class="chip">Sertifikasi Resmi</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     08. SWOT
+══════════════════════════════════════════ -->
+<section id="swot">
+  <div class="wrap">
+    <div class="sh-eyebrow">08 · ANALISIS SWOT</div>
+    <h2 class="sh-title">Penilaian <em>Strategis</em> yang Jujur</h2>
+    <p class="sh-lead">Analisis ini disusun secara jujur dan faktual — memastikan seluruh strategi yang diambil berpijak pada realita, bukan ilusi optimisme semata.</p>
+
+    <div class="swot-wrap">
+      <div class="sw-cell S">
+        <div class="sc-label">INTERNAL · POSITIF</div>
+        <h3>💪 Strengths</h3>
+        <ul>
+          <li>Satu-satunya lembaga Maritime English spesifik di Kampung Inggris — zero direct competitor</li>
+          <li>Founder dengan pengalaman langsung sebagai Chief Engineer di kapal internasional</li>
+          <li>Filosofi "dari pelaut untuk pelaut" — kredibilitas dan kepercayaan alami</li>
+          <li>Jaringan aktif dengan POLTEKPEL Surabaya, Universitas Hangtuah, dan industri pelayaran</li>
+          <li>Ekosistem Pare yang sudah matang — infrastruktur, budaya belajar, dan arus peserta tersedia</li>
+          <li>Yayasan membuka akses ke program pemerintah dan hibah pendidikan</li>
+          <li>Tim digital kuat untuk brand building cepat dengan biaya efisien</li>
+        </ul>
+      </div>
+      <div class="sw-cell W">
+        <div class="sc-label">INTERNAL · NEGATIF</div>
+        <h3>⚠️ Weaknesses</h3>
+        <ul>
+          <li>Lembaga baru tanpa rekam jejak alumni yang terukur</li>
+          <li>Keterbatasan modal awal untuk infrastruktur simulasi maritime</li>
+          <li>Ketergantungan awal pada jaringan pribadi pendiri</li>
+          <li>Trainer spesialis Maritime English sulit ditemukan di Pare</li>
+          <li>Belum memiliki akreditasi resmi dari BPSDM Perhubungan / IMO</li>
+          <li>Risiko tumpang tindih peran dalam tim multitasking awal</li>
+        </ul>
+      </div>
+      <div class="sw-cell O">
+        <div class="sc-label">EKSTERNAL · POSITIF</div>
+        <h3>🌱 Opportunities</h3>
+        <ul>
+          <li>Defisit 16.500+ officer global — permintaan yang tidak bisa diabaikan</li>
+          <li>800.000 seafarer perlu upskilling sebelum 2035 — pasar yang masif</li>
+          <li>Program ILO SfP Indonesia mendorong kolaborasi industri–pendidikan maritim</li>
+          <li>54 blok migas baru + ekspansi offshore wind 2024–2028</li>
+          <li>STCW menjadikan Maritime English mandatory dan terus berulang</li>
+          <li>Pasar cruise line dan hospitality premium tumbuh signifikan</li>
+          <li>Digital platform memungkinkan jangkauan nasional dengan modal minimal</li>
+        </ul>
+      </div>
+      <div class="sw-cell T">
+        <div class="sc-label">EKSTERNAL · NEGATIF</div>
+        <h3>🚨 Threats</h3>
+        <ul>
+          <li>Lembaga kursus besar di Pare dapat meniru konsep ini setelah terbukti sukses</li>
+          <li>Perubahan regulasi STCW yang dapat mempengaruhi persyaratan sertifikasi</li>
+          <li>Resesi global dapat menekan permintaan tenaga kerja kapal sementara</li>
+          <li>Persaingan dari lembaga pelatihan maritim di kota pelabuhan besar</li>
+          <li>Birokrasi perizinan lembaga pelatihan maritim yang kompleks</li>
+          <li>Risiko kehilangan trainer berkualitas ke tawaran industri</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-call">
+      <strong>Strategi Kunci dari SWOT:</strong> Gerak cepat memanfaatkan posisi unik pioneer dan jaringan industri sebelum kompetitor menyadari peluang ini. Segera tangani kelemahan akreditasi dengan membangun kerjasama resmi institusional sebagai prioritas Fase 1 (2026).
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     09. MITRA & INSTITUSI
+══════════════════════════════════════════ -->
+<section id="mitra" class="partner-section">
+  <div class="wrap">
+    <div class="sh-eyebrow">09 · MITRA & INSTITUSI</div>
+    <h2 class="sh-title">Ekosistem <em>Mitra Strategis</em><br>Nasional & Internasional</h2>
+    <p class="sh-lead">M.E.C beroperasi dalam jaringan mitra yang luas — dari badan maritim internasional, institusi pendidikan nasional, hingga cruise line global. Klik kartu untuk membuka situs mitra.</p>
+
+    <div class="partner-tabs">
+      <button class="ptab active" onclick="switchTab('intl')">🌏 Badan Internasional</button>
+      <button class="ptab" onclick="switchTab('cruise')">🛳️ Cruise Lines</button>
+      <button class="ptab" onclick="switchTab('nasional')">🇮🇩 Pendidikan Nasional</button>
+      <button class="ptab" onclick="switchTab('crewing')">⚓ Crewing & Shipping</button>
+      <button class="ptab" onclick="switchTab('pemerintah')">🏛️ Pemerintah & Regulator</button>
+    </div>
+
+    <!-- INTERNATIONAL -->
+    <div class="partner-pane active" id="pane-intl">
+      <div class="partner-grid">
+        <a class="pcard" href="https://www.imo.org" target="_blank" rel="noopener">
+          <span class="pcard-cat">BADAN INTERNASIONAL</span>
+          <span class="pcard-flag">🌐</span>
+          <span class="pcard-name">IMO — International Maritime Organization</span>
+          <span class="pcard-url">imo.org</span>
+          <span class="pcard-desc">Badan PBB yang menetapkan standar global keselamatan, keamanan, dan perlindungan lingkungan maritim. Sumber SMCP & STCW.</span>
+          <span class="pcard-badge">Standar SMCP</span>
+        </a>
+        <a class="pcard" href="https://www.bimco.org" target="_blank" rel="noopener">
+          <span class="pcard-cat">ASOSIASI PELAYARAN</span>
+          <span class="pcard-flag">🚢</span>
+          <span class="pcard-name">BIMCO — Baltic and International Maritime Council</span>
+          <span class="pcard-url">bimco.org</span>
+          <span class="pcard-desc">Asosiasi pelayaran terbesar dunia. Menyediakan data pasar seafarer, publikasi standar, dan program pelatihan maritim.</span>
+          <span class="pcard-badge">Data Pasar</span>
+        </a>
+        <a class="pcard" href="https://www.stcw.org" target="_blank" rel="noopener">
+          <span class="pcard-cat">REGULASI GLOBAL</span>
+          <span class="pcard-flag">📜</span>
+          <span class="pcard-name">STCW — Standards of Training, Certification & Watchkeeping</span>
+          <span class="pcard-url">stcw.org</span>
+          <span class="pcard-desc">Konvensi internasional yang menetapkan standar minimum pelatihan, sertifikasi, dan dinas jaga bagi pelaut.</span>
+          <span class="pcard-badge">Mandatory</span>
+        </a>
+        <a class="pcard" href="https://www.ilo.org/maritime" target="_blank" rel="noopener">
+          <span class="pcard-cat">TENAGA KERJA INTERNASIONAL</span>
+          <span class="pcard-flag">🤝</span>
+          <span class="pcard-name">ILO — International Labour Organization Maritime</span>
+          <span class="pcard-url">ilo.org/maritime</span>
+          <span class="pcard-desc">Program Skills for Prosperity Indonesia mendorong kolaborasi pelatihan SDM maritim. Sumber hibah dan pendanaan.</span>
+          <span class="pcard-badge">Funding Source</span>
+        </a>
+        <a class="pcard" href="https://www.oceanslearning.eu" target="_blank" rel="noopener">
+          <span class="pcard-cat">PLATFORM E-LEARNING</span>
+          <span class="pcard-flag">💻</span>
+          <span class="pcard-name">Oceans — Maritime E-Learning Platform</span>
+          <span class="pcard-url">oceanslearning.eu</span>
+          <span class="pcard-desc">Platform e-learning maritim EU yang menyediakan konten digital untuk maritime English dan navigasi. Referensi benchmark.</span>
+          <span class="pcard-badge">Benchmark</span>
+        </a>
+        <a class="pcard" href="https://www.iamu-edu.org" target="_blank" rel="noopener">
+          <span class="pcard-cat">ASOSIASI PENDIDIKAN</span>
+          <span class="pcard-flag">🎓</span>
+          <span class="pcard-name">IAMU — International Association of Maritime Universities</span>
+          <span class="pcard-url">iamu-edu.org</span>
+          <span class="pcard-desc">Jaringan 57 universitas maritim dari 29 negara. Potensi mitra co-curriculum dan pertukaran modul pengajaran.</span>
+          <span class="pcard-badge">Network</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CRUISE LINES -->
+    <div class="partner-pane" id="pane-cruise">
+      <div class="partner-grid">
+        <a class="pcard" href="https://www.royalcaribbeancareers.com" target="_blank" rel="noopener">
+          <span class="pcard-cat">CRUISE LINE GLOBAL</span>
+          <span class="pcard-flag">👑</span>
+          <span class="pcard-name">Royal Caribbean International</span>
+          <span class="pcard-url">royalcaribbeancareers.com</span>
+          <span class="pcard-desc">Armada terbesar dunia dengan 60+ kapal. Merekrut secara aktif dari Asia Tenggara untuk posisi hospitality, deck & engine.</span>
+          <span class="pcard-badge">Top Recruiter</span>
+        </a>
+        <a class="pcard" href="https://www.carnival.com/careers" target="_blank" rel="noopener">
+          <span class="pcard-cat">CRUISE LINE GLOBAL</span>
+          <span class="pcard-flag">🎪</span>
+          <span class="pcard-name">Carnival Corporation & PLC</span>
+          <span class="pcard-url">carnival.com/careers</span>
+          <span class="pcard-desc">Induk dari 9 brand cruise terbesar (Princess, Holland America, Cunard, dll). Ribuan posisi crew terbuka sepanjang tahun.</span>
+          <span class="pcard-badge">9 Brands</span>
+        </a>
+        <a class="pcard" href="https://www.msccruises.com/en-gl/Utility/Careers.aspx" target="_blank" rel="noopener">
+          <span class="pcard-cat">CRUISE LINE GLOBAL</span>
+          <span class="pcard-flag">🚢</span>
+          <span class="pcard-name">MSC Cruises</span>
+          <span class="pcard-url">msccruises.com</span>
+          <span class="pcard-desc">Cruise line terbesar ketiga dunia berbasis Swiss. Ekspansi agresif di Asia dengan rekrutmen aktif crew Indonesia.</span>
+          <span class="pcard-badge">Ekspansi Asia</span>
+        </a>
+        <a class="pcard" href="https://www.ncl.com/crew-careers" target="_blank" rel="noopener">
+          <span class="pcard-cat">CRUISE LINE GLOBAL</span>
+          <span class="pcard-flag">⚓</span>
+          <span class="pcard-name">Norwegian Cruise Line</span>
+          <span class="pcard-url">ncl.com</span>
+          <span class="pcard-desc">NCL Holdings mencakup NCL, Oceania, dan Regent Seven Seas. Posisi F&B, housekeeping, dan entertainment sangat dicari.</span>
+          <span class="pcard-badge">3 Brands</span>
+        </a>
+        <a class="pcard" href="https://www.costacruises.com/careers" target="_blank" rel="noopener">
+          <span class="pcard-cat">CRUISE LINE EROPA</span>
+          <span class="pcard-flag">🇮🇹</span>
+          <span class="pcard-name">Costa Cruises</span>
+          <span class="pcard-url">costacruises.com/careers</span>
+          <span class="pcard-desc">Brand cruise Italia terbesar, aktif di pasar Asia dengan rekrutmen dari Indonesia. Kebutuhan crew F&B dan deck sangat besar.</span>
+          <span class="pcard-badge">Asia Active</span>
+        </a>
+        <a class="pcard" href="https://www.genting-cruises.com/careers" target="_blank" rel="noopener">
+          <span class="pcard-cat">CRUISE LINE ASIA</span>
+          <span class="pcard-flag">🌏</span>
+          <span class="pcard-name">Genting Dream Cruises</span>
+          <span class="pcard-url">genting-cruises.com</span>
+          <span class="pcard-desc">Cruise line berbasis Asia dengan rute domestik dan Asia-Pasifik. Salah satu perekrut crew Indonesia terbanyak di Asia.</span>
+          <span class="pcard-badge">Asia Routes</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- PENDIDIKAN NASIONAL -->
+    <div class="partner-pane" id="pane-nasional">
+      <div class="partner-grid">
+        <a class="pcard" href="https://www.poltekpel-sby.ac.id" target="_blank" rel="noopener">
+          <span class="pcard-cat">POLITEKNIK PELAYARAN</span>
+          <span class="pcard-flag">🏫</span>
+          <span class="pcard-name">POLTEKPEL Surabaya</span>
+          <span class="pcard-url">poltekpel-sby.ac.id</span>
+          <span class="pcard-desc">Politeknik Pelayaran Surabaya — mitra utama M.E.C. Pemasok taruna terbesar Jawa Timur dengan program D-III & D-IV Teknika dan Nautika.</span>
+          <span class="pcard-badge">Mitra Utama</span>
+        </a>
+        <a class="pcard" href="https://hangtuah.ac.id" target="_blank" rel="noopener">
+          <span class="pcard-cat">UNIVERSITAS MARITIM</span>
+          <span class="pcard-flag">⚓</span>
+          <span class="pcard-name">Universitas Hang Tuah Surabaya</span>
+          <span class="pcard-url">hangtuah.ac.id</span>
+          <span class="pcard-desc">Universitas berbasis maritim di Surabaya dengan Fakultas Teknik dan Kelautan. Jaringan alumni aktif di industri pelayaran nasional.</span>
+          <span class="pcard-badge">Mitra Utama</span>
+        </a>
+        <a class="pcard" href="https://www.stip.ac.id" target="_blank" rel="noopener">
+          <span class="pcard-cat">SEKOLAH TINGGI ILMU PELAYARAN</span>
+          <span class="pcard-flag">🏛️</span>
+          <span class="pcard-name">STIP Jakarta</span>
+          <span class="pcard-url">stip.ac.id</span>
+          <span class="pcard-desc">Sekolah Tinggi Ilmu Pelayaran Jakarta — institusi maritim tertua dan terbesar Indonesia. Potensi kerjasama kurikulum dan penempatan.</span>
+          <span class="pcard-badge">Nasional</span>
+        </a>
+        <a class="pcard" href="https://www.bp3ip.ac.id" target="_blank" rel="noopener">
+          <span class="pcard-cat">BALAI PELATIHAN</span>
+          <span class="pcard-flag">🎓</span>
+          <span class="pcard-name">BP3IP — Balai Pendidikan & Pelatihan Ilmu Pelayaran</span>
+          <span class="pcard-url">bp3ip.ac.id</span>
+          <span class="pcard-desc">Lembaga pelatihan resmi di bawah Kemenhub. Sertifikasi STCW Basic Safety Training dan pelatihan maritime profesional.</span>
+          <span class="pcard-badge">Sertifikasi</span>
+        </a>
+        <a class="pcard" href="https://www.poltekpel-makassar.ac.id" target="_blank" rel="noopener">
+          <span class="pcard-cat">POLITEKNIK PELAYARAN</span>
+          <span class="pcard-flag">🏫</span>
+          <span class="pcard-name">POLTEKPEL Makassar</span>
+          <span class="pcard-url">poltekpel-makassar.ac.id</span>
+          <span class="pcard-desc">Politeknik Pelayaran Makassar — gateway seafarer Indonesia Timur. Mitra potensial untuk ekspansi regional M.E.C 2027–2028.</span>
+          <span class="pcard-badge">Ekspansi</span>
+        </a>
+        <a class="pcard" href="https://www.univpancasila.ac.id/prodi/nautika" target="_blank" rel="noopener">
+          <span class="pcard-cat">PERGURUAN TINGGI MARITIM</span>
+          <span class="pcard-flag">🎓</span>
+          <span class="pcard-name">AMI — Akademi Maritim Indonesia</span>
+          <span class="pcard-url">ami-nasional.ac.id</span>
+          <span class="pcard-desc">Jaringan akademi maritim swasta di berbagai kota. Pasar besar untuk program corporate training dan modul Maritime English M.E.C.</span>
+          <span class="pcard-badge">Potensi Besar</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CREWING & SHIPPING -->
+    <div class="partner-pane" id="pane-crewing">
+      <div class="partner-grid">
+        <a class="pcard" href="https://www.pt-pann.co.id" target="_blank" rel="noopener">
+          <span class="pcard-cat">BUMN PELAYARAN</span>
+          <span class="pcard-flag">🚢</span>
+          <span class="pcard-name">PT PAN Nusantara Armada</span>
+          <span class="pcard-url">pt-pann.co.id</span>
+          <span class="pcard-desc">BUMN di sektor pembiayaan kapal. Mitra potensial untuk program corporate training crew kapal berbendera Indonesia.</span>
+          <span class="pcard-badge">BUMN</span>
+        </a>
+        <a class="pcard" href="https://www.pelni.co.id" target="_blank" rel="noopener">
+          <span class="pcard-cat">BUMN PELAYARAN</span>
+          <span class="pcard-flag">⛴️</span>
+          <span class="pcard-name">PT PELNI — Pelayaran Nasional Indonesia</span>
+          <span class="pcard-url">pelni.co.id</span>
+          <span class="pcard-desc">BUMN terbesar pelayaran penumpang Indonesia. Ribuan crew aktif yang dapat menjadi target corporate training Maritime English.</span>
+          <span class="pcard-badge">Corporate Training</span>
+        </a>
+        <a class="pcard" href="https://www.pertaminainternationalshipping.com" target="_blank" rel="noopener">
+          <span class="pcard-cat">SHIPPING ENERGI</span>
+          <span class="pcard-flag">⛽</span>
+          <span class="pcard-name">Pertamina International Shipping</span>
+          <span class="pcard-url">pertaminainternationalshipping.com</span>
+          <span class="pcard-desc">Arm pelayaran Pertamina untuk kapal tanker internasional. Kebutuhan officer dengan Maritime English sangat tinggi untuk rute internasional.</span>
+          <span class="pcard-badge">Target Besar</span>
+        </a>
+        <a class="pcard" href="https://www.samuderagroup.com" target="_blank" rel="noopener">
+          <span class="pcard-cat">SHIPPING SWASTA</span>
+          <span class="pcard-flag">🌊</span>
+          <span class="pcard-name">Samudera Indonesia Group</span>
+          <span class="pcard-url">samuderagroup.com</span>
+          <span class="pcard-desc">Grup pelayaran swasta terbesar Indonesia dengan armada container, bulk, dan tanker. MoU crewing dan corporate training potensial.</span>
+          <span class="pcard-badge">MoU Potensial</span>
+        </a>
+        <a class="pcard" href="https://www.oceaniapacific.com" target="_blank" rel="noopener">
+          <span class="pcard-cat">CREWING AGENT</span>
+          <span class="pcard-flag">🤝</span>
+          <span class="pcard-name">Oceania Pacific Crewing</span>
+          <span class="pcard-url">oceaniapacific.com</span>
+          <span class="pcard-desc">Crewing agent Indonesia aktif menyalurkan pelaut ke kapal-kapal internasional. Mitra placement fee langsung untuk alumni M.E.C.</span>
+          <span class="pcard-badge">Placement Fee</span>
+        </a>
+        <a class="pcard" href="https://www.globalseas.co.id" target="_blank" rel="noopener">
+          <span class="pcard-cat">CREWING AGENT</span>
+          <span class="pcard-flag">⚓</span>
+          <span class="pcard-name">Global Seas Maritime</span>
+          <span class="pcard-url">globalseas.co.id</span>
+          <span class="pcard-desc">Agen pelayaran dan kru yang menghubungkan seafarer Indonesia dengan shipping company internasional. Jaringan perekrutan aktif.</span>
+          <span class="pcard-badge">Aktif</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- PEMERINTAH -->
+    <div class="partner-pane" id="pane-pemerintah">
+      <div class="partner-grid">
+        <a class="pcard" href="https://hubla.dephub.go.id" target="_blank" rel="noopener">
+          <span class="pcard-cat">KEMENTERIAN PERHUBUNGAN</span>
+          <span class="pcard-flag">🏛️</span>
+          <span class="pcard-name">Ditjen Hubla — Hubungan Laut</span>
+          <span class="pcard-url">hubla.dephub.go.id</span>
+          <span class="pcard-desc">Direktorat Jenderal Perhubungan Laut Kemenhub. Regulator utama pelayaran Indonesia dan penerbit dokumen sertifikasi pelaut.</span>
+          <span class="pcard-badge">Regulator</span>
+        </a>
+        <a class="pcard" href="https://bpsdmp.dephub.go.id" target="_blank" rel="noopener">
+          <span class="pcard-cat">BADAN PENGEMBANGAN SDM</span>
+          <span class="pcard-flag">📋</span>
+          <span class="pcard-name">BPSDMP — Badan Pengembangan SDM Perhubungan</span>
+          <span class="pcard-url">bpsdmp.dephub.go.id</span>
+          <span class="pcard-desc">Badan SDM Kemenhub yang membawahi seluruh politeknik pelayaran negeri. Kunci untuk akreditasi pelatihan dan subsidi program.</span>
+          <span class="pcard-badge">Akreditasi</span>
+        </a>
+        <a class="pcard" href="https://kemnaker.go.id" target="_blank" rel="noopener">
+          <span class="pcard-cat">KEMENTERIAN KETENAGAKERJAAN</span>
+          <span class="pcard-flag">👷</span>
+          <span class="pcard-name">Kementerian Ketenagakerjaan RI</span>
+          <span class="pcard-url">kemnaker.go.id</span>
+          <span class="pcard-desc">Sumber subsidi pelatihan melalui program Kartu Prakerja, BLK, dan bantuan pelatihan vokasional berbasis industri maritim.</span>
+          <span class="pcard-badge">Subsidi</span>
+        </a>
+        <a class="pcard" href="https://www.prakerja.go.id" target="_blank" rel="noopener">
+          <span class="pcard-cat">PROGRAM NASIONAL</span>
+          <span class="pcard-flag">🎓</span>
+          <span class="pcard-name">Program Kartu Prakerja</span>
+          <span class="pcard-url">prakerja.go.id</span>
+          <span class="pcard-desc">Program nasional subsidi pelatihan pemerintah. M.E.C dapat mendaftar sebagai lembaga mitra Prakerja untuk memperluas akses peserta.</span>
+          <span class="pcard-badge">Mitra Potensial</span>
+        </a>
+        <a class="pcard" href="https://www.ilo.org/indonesia" target="_blank" rel="noopener">
+          <span class="pcard-cat">ORGANISASI INTERNASIONAL</span>
+          <span class="pcard-flag">🌐</span>
+          <span class="pcard-name">ILO Indonesia — Skills for Prosperity</span>
+          <span class="pcard-url">ilo.org/indonesia</span>
+          <span class="pcard-desc">Program ILO di Indonesia mendukung kolaborasi pelatihan vokasi maritim dengan dana hibah dan technical assistance.</span>
+          <span class="pcard-badge">Hibah</span>
+        </a>
+        <a class="pcard" href="https://www.kemdikbud.go.id" target="_blank" rel="noopener">
+          <span class="pcard-cat">KEMENDIKBUD RISTEK</span>
+          <span class="pcard-flag">📚</span>
+          <span class="pcard-name">Kemendikbud — Direktorat Vokasi</span>
+          <span class="pcard-url">kemdikbud.go.id</span>
+          <span class="pcard-desc">Akreditasi LKP (Lembaga Kursus dan Pelatihan) dari Kemdikbud memberikan legalitas penuh M.E.C sebagai lembaga pelatihan resmi.</span>
+          <span class="pcard-badge">Legalitas LKP</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     10. FAQ
+══════════════════════════════════════════ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sh-eyebrow">10 · FREQUENTLY ASKED QUESTIONS</div>
+    <h2 class="sh-title">Pertanyaan yang <em>Sering Diajukan</em></h2>
+
+    <div id="faq-list">
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          Apa yang membedakan M.E.C dari ratusan kursus bahasa Inggris lain di Pare?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>M.E.C bukan kursus General English. Kami mengajarkan Maritime English — bahasa kerja standar di atas kapal internasional — berdasarkan IMO SMCP (Standard Marine Communication Phrases) dan STCW. Materi mencakup: komunikasi radio VHF, prosedur keselamatan di laut, terminologi teknis permesinan dan navigasi, serta simulasi percakapan onboard nyata. Yang lebih penting, M.E.C berfungsi sebagai talent bridge — peserta tidak hanya belajar, tetapi terkoneksi langsung dengan peluang kerja di perusahaan pelayaran internasional. Ini belum ada di Pare sebelumnya.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          Mengapa Kampung Inggris Pare menjadi lokasi yang tepat untuk M.E.C?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>Pare adalah ekosistem yang tidak ada duanya di Indonesia — dengan 400+ lembaga kursus, 50.000–100.000 peserta per tahun, dan infrastruktur belajar bahasa yang sudah matang puluhan tahun. Keunggulan strategis untuk M.E.C:</p>
+          <ul>
+            <li>Pipeline peserta organik tanpa biaya rekrutmen masif</li>
+            <li>Ratusan mitra LPK potensial untuk kolaborasi fasilitas</li>
+            <li>Biaya operasional jauh lebih rendah vs kota pelabuhan besar</li>
+            <li>Brand "Kampung Inggris" yang sudah dikenal nasional memperkuat marketing</li>
+            <li>Zero kompetitor langsung di segmen Maritime English</li>
+          </ul>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          Siapa saja yang bisa mendaftar sebagai peserta M.E.C?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <ul>
+            <li>Taruna / cadet dari POLTEKPEL, Universitas Hangtuah, dan akademi pelayaran lainnya</li>
+            <li>Pelaut aktif (officer & ratings) yang ingin upgrade kompetensi komunikasi internasional</li>
+            <li>Fresh graduate program maritim yang mempersiapkan diri melamar kapal internasional</li>
+            <li>Tenaga hospitality yang ingin berkarir di cruise line atau hotel berbintang internasional</li>
+            <li>Pencari kerja sektor offshore oil & gas yang membutuhkan bahasa Inggris teknis</li>
+          </ul>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          Berapa lama program pelatihan dan berapa biayanya?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>Tiga jalur program utama di tahun 2026:</p>
+          <ul>
+            <li><strong>Intensif (2–4 minggu):</strong> Maritime English dasar + persiapan interview. Untuk pelaut yang segera melamar kerja. Rp1,5–2,5 juta.</li>
+            <li><strong>Reguler (1–3 bulan):</strong> Kompetensi penuh Maritime English, simulasi onboard, soft skill. Ideal untuk taruna dan fresh graduate. Rp2,5–4 juta.</li>
+            <li><strong>Custom / Corporate:</strong> Dirancang sesuai kebutuhan spesifik perusahaan atau institusi. Harga kontrak.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          Bagaimana M.E.C memastikan peserta benar-benar mendapat pekerjaan?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>M.E.C berkomitmen melalui sistem talent bridge yang terstruktur:</p>
+          <ul>
+            <li>Seluruh lulusan yang memenuhi standar masuk ke <strong>database kandidat aktif</strong> yang dibagikan ke jaringan industri secara rutin</li>
+            <li><strong>Job fair dan campus hiring</strong> dengan crewing agent dan shipping company — digelar minimal 2x per tahun</li>
+            <li><strong>Coaching dan evaluasi interview</strong> individual sebelum peserta menghadapi seleksi perusahaan</li>
+            <li>Tingkat keberhasilan penyaluran alumni akan dipublikasikan secara <strong>transparan</strong> sebagai KPI utama lembaga</li>
+          </ul>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          Bagaimana sistem pembagian hasil yang adil bagi seluruh tim?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>M.E.C menggunakan prinsip <strong>contribution-based distribution</strong> — setiap insentif didistribusikan berdasarkan kontribusi nyata, bukan kepemilikan. Tidak ada sistem saham. Setiap peran memiliki insentif yang jelas dan disepakati bersama sejak awal. Laporan keuangan dan distribusi dibagikan secara berkala dan transparan kepada seluruh tim. Tidak ada pihak yang mendapat manfaat tanpa berkontribusi aktif.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          Apakah M.E.C memiliki legalitas resmi sebagai lembaga pelatihan?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>M.E.C didirikan sebagai <strong>Yayasan resmi</strong> (UU No. 16/2001 jo. UU No. 28/2004). Dalam roadmap 2026, kami akan mengupayakan pengakuan sebagai <strong>Lembaga Kursus dan Pelatihan (LKP)</strong> dari Dinas Pendidikan, serta menjalin kerjasama dengan BPSDM Perhubungan untuk legitimasi pelatihan maritim yang lebih kuat.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          Bagaimana cara bermitra dengan M.E.C?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p>Jalur kemitraan yang tersedia:</p>
+          <ul>
+            <li><strong>Institusi Pendidikan:</strong> Kerjasama kurikulum, rekrutmen bersama, beasiswa kolaboratif</li>
+            <li><strong>Shipping Company / Crewing Agent:</strong> MoU penyediaan kandidat, campus hiring, job fair</li>
+            <li><strong>LPK / Kursus di Pare:</strong> Berbagi fasilitas, co-teaching, referral peserta mutual</li>
+            <li><strong>Trainer / Instruktur:</strong> Bergabung sebagai pengajar Maritime English atau soft skill</li>
+            <li><strong>Donatur / Sponsor:</strong> Mendukung program beasiswa untuk peserta prasejahtera</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CLOSING -->
+<div class="closing-section">
+  <div class="wrap">
+    <h2>Bersama, Kita Bangun<br>Jalur Karir Global</h2>
+    <p class="cl-sub">
+      M.E.C bukan sekadar tempat belajar bahasa. Ini adalah sistem terintegrasi yang menghubungkan pelatihan maritim dengan dunia kerja internasional — dibangun di jantung Kampung Inggris Pare, untuk pelaut Indonesia.
+    </p>
+    <div class="cl-quote">
+      "Membangun jalur nyata dari pelatihan menuju karir global.<br>Dari Pelaut, Untuk Pelaut."
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>M.E.C – Maritime English Course</span> · Training Center & Talent Bridge Maritim dan Hospitality<br>
+  Kampung Inggris Pare · Kediri · Jawa Timur · Indonesia<br>
+  Disusun oleh <span>Tim Ravindo</span> · <span>Rafael Sukirno, CE</span> et al. · <span>2026</span>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MODAL DATA + SCRIPTS
+══════════════════════════════════════════ -->
+<script>
+/* ═══════════════════ THEME ═══════════════════ */
+function toggleTheme(){
+  const h=document.documentElement,b=document.getElementById('theme-btn');
+  if(h.getAttribute('data-theme')==='dark'){h.setAttribute('data-theme','light');b.textContent='🌙';}
+  else{h.setAttribute('data-theme','dark');b.textContent='☀️';}
+}
+function scrollTop(){window.scrollTo({top:0,behavior:'smooth'});}
+
+/* ═══════════════════ MODAL ═══════════════════ */
+const modalData = {
+
+  /* ── LATAR BELAKANG ── */
+  latbel1:`
+    <div class="modal-eyebrow">LATAR BELAKANG · 01</div>
+    <div class="modal-title">Permintaan Industri Maritim Global Melonjak</div>
+    <div class="modal-sub">Data & Fakta 2026</div>
+    <div class="modal-divider"></div>
+    <p>Industri maritim global tengah menghadapi krisis SDM yang nyata. Permintaan officer dan crew berkualifikasi jauh melampaui pasokan yang ada, khususnya mereka yang mampu berkomunikasi dalam Maritime English standar internasional.</p>
+    <div class="kpi-grid">
+      <div class="kpi-box"><span class="kpi-num">16.500+</span><span class="kpi-label">Kekurangan officer global saat ini</span></div>
+      <div class="kpi-box"><span class="kpi-num">800K</span><span class="kpi-label">Seafarer perlu upskilling 2035</span></div>
+      <div class="kpi-box"><span class="kpi-num">$2.4B</span><span class="kpi-label">Proyeksi pasar crew mgmt 2032</span></div>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">SEGMEN YANG MEMBUTUHKAN MARITIME ENGLISH</div>
+    <ul>
+      <li>Kapal niaga (container, bulk, tanker) rute internasional — komunikasi GMDSS mandatory</li>
+      <li>Offshore oil & gas (FPSO, platform, PSV) — briefing safety dan emergency response</li>
+      <li>Cruise line — pelayanan tamu internasional, safety drill, komunikasi antar departemen</li>
+      <li>Hospitality internasional — standar komunikasi dalam bahasa Inggris profesional</li>
+    </ul>
+    <div class="modal-tags"><span class="modal-tag">IMO SMCP</span><span class="modal-tag">STCW Mandatory</span><span class="modal-tag">GMDSS</span><span class="modal-tag">VHF Radio</span></div>`,
+
+  latbel2:`
+    <div class="modal-eyebrow">LATAR BELAKANG · 02</div>
+    <div class="modal-title">Hambatan Bahasa Pelaut Indonesia</div>
+    <div class="modal-sub">Riset & Temuan Lapangan 2026</div>
+    <div class="modal-divider"></div>
+    <p>Studi komunikasi maritime menunjukkan bahwa pelaut Indonesia menghadapi hambatan signifikan dalam tiga aspek utama: pilihan kosakata teknis, aksen dan pengucapan, serta konstruksi kalimat dalam konteks operasional kapal.</p>
+    <div class="modal-section-title">HAMBATAN YANG DIIDENTIFIKASI</div>
+    <ul>
+      <li><strong>Kosakata teknis:</strong> Istilah nautika dan permesinan dalam bahasa Inggris masih lemah</li>
+      <li><strong>Radio communication:</strong> Prosedur VHF dan GMDSS belum dikuasai dengan benar</li>
+      <li><strong>Emergency procedures:</strong> Respons dalam situasi darurat menggunakan IMO phraseology</li>
+      <li><strong>Cultural confidence:</strong> Kepercayaan diri berbicara dengan atasan/klien asing masih rendah</li>
+      <li><strong>Written English:</strong> Log book, sea protest, dan laporan teknis dalam bahasa Inggris</li>
+    </ul>
+    <div class="modal-section-title">DAMPAK NYATA</div>
+    <ul>
+      <li>Karir terhambat — posisi officer senior sulit dicapai tanpa komunikasi yang lancar</li>
+      <li>Risiko keselamatan — miscommunication di atas kapal berpotensi fatal</li>
+      <li>Peluang kerja internasional hilang — banyak perusahaan global menolak kandidat yang tidak komunikatif</li>
+    </ul>`,
+
+  latbel3:`
+    <div class="modal-eyebrow">LATAR BELAKANG · 03</div>
+    <div class="modal-title">Kampung Inggris Pare: Ekosistem Siap Pakai</div>
+    <div class="modal-sub">Mengapa Pare adalah Pilihan Sempurna</div>
+    <div class="modal-divider"></div>
+    <div class="kpi-grid">
+      <div class="kpi-box"><span class="kpi-num">400+</span><span class="kpi-label">Lembaga kursus aktif</span></div>
+      <div class="kpi-box"><span class="kpi-num">100K</span><span class="kpi-label">Peserta per tahun</span></div>
+      <div class="kpi-box"><span class="kpi-num">40+</span><span class="kpi-label">Tahun ekosistem berkembang</span></div>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">KEUNGGULAN STRATEGIS PARE UNTUK M.E.C</div>
+    <ul>
+      <li>Pipeline peserta organik — tidak perlu biaya rekrutmen besar dari awal</li>
+      <li>Ratusan mitra LPK potensial untuk berbagi fasilitas kelas dan pengajar General English</li>
+      <li>Biaya hidup dan operasional jauh lebih rendah dibanding kota pelabuhan besar</li>
+      <li>Brand nasional "Kampung Inggris" memperkuat marketing secara otomatis</li>
+      <li>Zero kompetitor di segmen Maritime English — first mover advantage penuh</li>
+      <li>Komunitas belajar yang kuat — peserta sudah terbiasa dengan lingkungan belajar intensif</li>
+    </ul>`,
+
+  latbel4:`
+    <div class="modal-eyebrow">LATAR BELAKANG · 04</div>
+    <div class="modal-title">M.E.C sebagai Jembatan Nyata</div>
+    <div class="modal-sub">Proposisi Nilai yang Unik</div>
+    <div class="modal-divider"></div>
+    <p>M.E.C hadir bukan sebagai kursus bahasa biasa. Ini adalah ekosistem terintegrasi yang menghubungkan tiga elemen yang selama ini terpisah: pelatihan berbasis industri, sertifikasi yang diakui, dan penempatan kerja nyata.</p>
+    <div class="modal-section-title">TIGA PILAR M.E.C</div>
+    <ul>
+      <li><strong>TRAIN:</strong> Pelatihan Maritime English berbasis IMO SMCP dan STCW — bukan General English</li>
+      <li><strong>CERTIFY:</strong> Menuju sertifikasi yang diakui BPSDM dan berstandar internasional</li>
+      <li><strong>PLACE:</strong> Talent bridge aktif ke crewing agent, shipping company, dan cruise line global</li>
+    </ul>
+    <div class="modal-section-title">DIFERENSIASI DARI KOMPETITOR</div>
+    <ul>
+      <li>Satu-satunya lembaga Maritime English spesifik di Kampung Inggris</li>
+      <li>Didirikan dan dipimpin oleh praktisi aktif — Chief Engineer berpengalaman internasional</li>
+      <li>Bukan hanya belajar — keluar dengan koneksi industri dan peluang karir konkret</li>
+      <li>Yayasan resmi — membuka akses ke program dan hibah pemerintah</li>
+    </ul>`,
+
+  /* ── STATISTIK ── */
+  stat1:`
+    <div class="modal-eyebrow">DATA PASAR</div>
+    <div class="modal-title">140.000+ Pelaut Aktif Indonesia</div>
+    <div class="modal-sub">Sumber: BIMCO Seafarer Workforce Report 2026</div>
+    <div class="modal-divider"></div>
+    <p>Indonesia adalah negara pemasok seafarer terbesar keempat dunia, dengan lebih dari 140.000 pelaut aktif yang bekerja di kapal-kapal berbendera internasional maupun domestik. Angka ini mencakup officer (perwira) dan ratings (bawahan).</p>
+    <div class="modal-section-title">BREAKDOWN POSISI</div>
+    <ul>
+      <li>Master & Chief Mate — navigasi dan keselamatan kapal</li>
+      <li>Chief Engineer & 2nd Engineer — permesinan dan sistem kapal</li>
+      <li>Deck Officer & Engineer Officer — operasional harian</li>
+      <li>Ratings (AB, OS, Oiler, Wiper) — crew pelaksana di atas kapal</li>
+    </ul>
+    <div class="modal-tags"><span class="modal-tag">BIMCO 2026</span><span class="modal-tag">ILO Data</span><span class="modal-tag">Ditjen Hubla</span></div>`,
+
+  stat2:`
+    <div class="modal-eyebrow">DATA PASAR</div>
+    <div class="modal-title">Kekurangan 16.500 Officer Global</div>
+    <div class="modal-sub">Sumber: Crew Management Market Report 2026</div>
+    <div class="modal-divider"></div>
+    <p>Industri pelayaran global saat ini kekurangan lebih dari 16.500 officer berkualifikasi — dan angka ini diproyeksikan terus meningkat seiring ekspansi armada global dan pensiun massal officer senior. Ini bukan proyeksi — ini kondisi aktual 2026.</p>
+    <div class="modal-section-title">PENYEBAB KRISIS OFFICER</div>
+    <ul>
+      <li>Penurunan rekrutmen taruna selama pandemi 2020–2022</li>
+      <li>Pensiun massal officer Eropa dan Jepang tanpa pengganti cukup</li>
+      <li>Ekspansi armada container dan tanker yang lebih cepat dari pembentukan SDM</li>
+      <li>Standar komunikasi yang semakin ketat — menyaring kandidat yang tak siap</li>
+    </ul>`,
+
+  stat3:`
+    <div class="modal-eyebrow">DATA PASAR</div>
+    <div class="modal-title">800.000 Seafarer Perlu Upskilling</div>
+    <div class="modal-sub">Sumber: Indonesia OSV & Shipping Industry Report</div>
+    <div class="modal-divider"></div>
+    <p>Perkiraan konservatif: hampir 800.000 seafarer global membutuhkan upskilling sebelum 2035, terutama dalam tiga area — Maritime English, teknologi kapal berbasis digital (smart ship), dan transisi green shipping (LNG, ammonia, hydrogen).</p>
+    <div class="modal-section-title">AREA UPSKILLING PRIORITAS</div>
+    <ul>
+      <li>Maritime English — komunikasi SMCP, radio, dan laporan teknis</li>
+      <li>Digital Navigation — ECDIS, AIS, smart bridge systems</li>
+      <li>Green Shipping — alternatif bahan bakar dan regulasi emisi IMO 2030</li>
+      <li>Cybersecurity Awareness — ancaman siber pada sistem navigasi modern</li>
+    </ul>`,
+
+  stat4:`
+    <div class="modal-eyebrow">DATA PASAR</div>
+    <div class="modal-title">Proyeksi Pasar $2.4 Miliar</div>
+    <div class="modal-sub">Sumber: IntelMarketResearch — Maritime Crew Management 2032</div>
+    <div class="modal-divider"></div>
+    <p>Pasar manajemen kru maritim diproyeksikan mencapai USD 2.4 miliar pada 2032, didorong oleh meningkatnya permintaan crewing services, platform digital placement, dan training management system yang terintegrasi.</p>
+    <div class="modal-section-title">KOMPONEN PASAR</div>
+    <ul>
+      <li>Recruitment & placement services — tumbuh paling cepat</li>
+      <li>Training & certification management — segmen education-tech maritim</li>
+      <li>Payroll & HR services untuk crew kapal internasional</li>
+      <li>Digital talent marketplace — platform matching crew dan kapal</li>
+    </ul>`,
+
+  stat5:`
+    <div class="modal-eyebrow">DATA PASAR</div>
+    <div class="modal-title">CAGR 15.4% Maritime Training App</div>
+    <div class="modal-sub">Sumber: HTF Market Intelligence 2024–2033</div>
+    <div class="modal-divider"></div>
+    <p>Aplikasi pelatihan maritim digital adalah segmen dengan pertumbuhan tercepat — CAGR 15.4% per tahun dari 2024 hingga 2033. Ini membuka peluang besar bagi M.E.C untuk membangun platform e-learning sebagai revenue stream pasif yang sangat scalable.</p>
+    <div class="modal-section-title">PELUANG DIGITAL M.E.C</div>
+    <ul>
+      <li>Modul Maritime English digital yang dapat disubskripsi secara nasional</li>
+      <li>Simulasi komunikasi onboard berbasis AI untuk latihan mandiri</li>
+      <li>Video tutorial VHF phraseology dan prosedur darurat</li>
+      <li>Mock test IMO SMCP yang dapat diakses dari mana saja</li>
+    </ul>`,
+
+  /* ── PROSPEK ── */
+  prospek1:`
+    <div class="modal-eyebrow">SEGMEN PASAR</div>
+    <div class="modal-title">Kapal Niaga Internasional</div>
+    <div class="modal-sub">Merchant Shipping — Segmen Utama M.E.C</div>
+    <div class="modal-divider"></div>
+    <p>Indonesia adalah pemasok seafarer terbesar keempat dunia. Dengan lebih dari 53.000 kapal berbendera berbagai negara berlayar di lautan internasional, kebutuhan officer berkompetensi Maritime English tidak pernah serendah ini.</p>
+    <div class="modal-section-title">POSISI YANG PALING DIBUTUHKAN</div>
+    <ul>
+      <li>2nd & 3rd Officer (Navigasi) — kebutuhan tertinggi secara global</li>
+      <li>2nd & 3rd Engineer (Permesinan) — khususnya untuk tanker dan container</li>
+      <li>Electro Technical Officer (ETO) — segmen baru yang tumbuh pesat</li>
+      <li>Chief Cook & Steward — entry point paling mudah untuk crew baru</li>
+    </ul>
+    <div class="modal-section-title">GAJI REFERENSI (USD/BULAN)</div>
+    <ul>
+      <li>2nd Officer / 2nd Engineer: $2.000–$3.500</li>
+      <li>3rd Officer / 3rd Engineer: $1.500–$2.500</li>
+      <li>AB / OS / Oiler: $800–$1.400</li>
+      <li>Chief Cook: $1.200–$1.800</li>
+    </ul>
+    <div class="modal-tags"><span class="modal-tag">STCW Required</span><span class="modal-tag">IMO SMCP</span><span class="modal-tag">4× Gaji Darat</span></div>`,
+
+  prospek2:`
+    <div class="modal-eyebrow">SEGMEN PASAR</div>
+    <div class="modal-title">Offshore Oil, Gas & Wind Energy</div>
+    <div class="modal-sub">Segmen Tumbuh Cepat 2026–2030</div>
+    <div class="modal-divider"></div>
+    <p>Pemerintah Indonesia membuka 54 blok migas baru periode 2024–2028, ditambah target besar energi angin lepas pantai. Ini menciptakan lonjakan permintaan tenaga offshore yang mampu berkomunikasi dalam bahasa Inggris teknis secara profesional.</p>
+    <div class="modal-section-title">POSISI OFFSHORE YANG DICARI</div>
+    <ul>
+      <li>Offshore Installation Manager (OIM) — membutuhkan English sangat tinggi</li>
+      <li>Driller & Tool Pusher — safety briefing dalam bahasa Inggris</li>
+      <li>Roustabout & Roughneck — entry point offshore</li>
+      <li>Marine Coordinator — interface antara kapal dan platform</li>
+      <li>Medic / Paramedic Offshore — English untuk emergency communication</li>
+    </ul>
+    <div class="modal-section-title">GAJI REFERENSI</div>
+    <ul>
+      <li>Offshore Engineer: $3.000–$5.000/bulan</li>
+      <li>Driller: $2.500–$4.000/bulan</li>
+      <li>Roughneck / Roustabout: $1.500–$2.500/bulan</li>
+    </ul>`,
+
+  prospek3:`
+    <div class="modal-eyebrow">SEGMEN PASAR</div>
+    <div class="modal-title">Cruise Line & Hospitality Internasional</div>
+    <div class="modal-sub">Segmen Premium — Gaji Tertinggi, Standar English Ketat</div>
+    <div class="modal-divider"></div>
+    <p>Cruise line adalah segmen paling menarik secara finansial untuk crew asal Indonesia. Selain gaji kompetitif, crew cruise line mendapatkan fasilitas penuh onboard (makan, tidur, asuransi) sehingga hampir seluruh gaji bisa ditabung.</p>
+    <div class="modal-section-title">POSISI CRUISE LINE UNTUK INDONESIA</div>
+    <ul>
+      <li>Waiter / Waitress — F&B department, English conversation essential</li>
+      <li>Bar Steward — pelayanan minuman di berbagai bar kapal</li>
+      <li>Cabin Steward — housekeeping premium, service excellence</li>
+      <li>Spa Therapist — beauty & wellness, English sangat penting</li>
+      <li>Entertainment Crew — performer, aktivitas tamu</li>
+      <li>Deck & Engine Officer — karir officer di kapal cruise mewah</li>
+    </ul>
+    <div class="modal-section-title">GAJI REFERENSI CRUISE LINE</div>
+    <ul>
+      <li>Waiter / Waitress: $1.200–$1.800/bulan (+ tips hingga $600)</li>
+      <li>Bar Steward: $1.400–$2.000/bulan (+ tips)</li>
+      <li>Cabin Steward: $1.500–$2.200/bulan</li>
+      <li>Spa Therapist: $1.800–$2.800/bulan (+ komisi)</li>
+      <li>Engine Officer: $2.500–$4.500/bulan</li>
+    </ul>
+    <div class="modal-tags"><span class="modal-tag">Royal Caribbean</span><span class="modal-tag">Carnival Corp</span><span class="modal-tag">MSC Cruises</span><span class="modal-tag">Norwegian</span></div>`,
+
+  /* ── MONETISASI ── */
+  mono1:`
+    <div class="modal-eyebrow">REVENUE STREAM 01</div>
+    <div class="modal-title">Biaya Program Pelatihan</div>
+    <div class="modal-sub">Primary Revenue — Pendapatan Utama M.E.C</div>
+    <div class="modal-divider"></div>
+    <div class="kpi-grid">
+      <div class="kpi-box"><span class="kpi-num">40–100</span><span class="kpi-label">Peserta per batch target</span></div>
+      <div class="kpi-box"><span class="kpi-num">Rp4M</span><span class="kpi-label">Biaya max per peserta</span></div>
+      <div class="kpi-box"><span class="kpi-num">4–6×</span><span class="kpi-label">Batch per tahun potensial</span></div>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">BREAKDOWN PROGRAM</div>
+    <ul>
+      <li><strong>Intensif 2–4 minggu:</strong> Rp1,5–2,5 juta · Maritime English + interview prep · Target pelaut segera kerja</li>
+      <li><strong>Reguler 1–3 bulan:</strong> Rp2,5–4 juta · Full curriculum + simulasi + soft skill · Target taruna & fresh graduate</li>
+      <li><strong>Bootcamp Khusus Cruise:</strong> Rp2–3,5 juta · F&B English, service grooming, cruise interview · Target hospitality</li>
+    </ul>
+    <div class="modal-section-title">PROYEKSI PENDAPATAN TAHUNAN</div>
+    <ul>
+      <li>Batch pertama (20–40 peserta): Rp40–120 juta</li>
+      <li>Tahun 1 full (4 batch × 50 peserta × Rp2,5 juta): Rp500 juta</li>
+      <li>Tahun 2 target (6 batch × 80 peserta × Rp3 juta): Rp1,44 miliar</li>
+    </ul>`,
+
+  mono2:`
+    <div class="modal-eyebrow">REVENUE STREAM 02</div>
+    <div class="modal-title">Placement Fee dari Industri</div>
+    <div class="modal-sub">High Value Revenue — Komisi Penempatan Kandidat</div>
+    <div class="modal-divider"></div>
+    <div class="kpi-grid">
+      <div class="kpi-box"><span class="kpi-num">Rp8M</span><span class="kpi-label">Max fee per kandidat internasional</span></div>
+      <div class="kpi-box"><span class="kpi-num">Rp2M</span><span class="kpi-label">Min fee per kandidat lokal</span></div>
+      <div class="kpi-box"><span class="kpi-num">∞</span><span class="kpi-label">Scalable tanpa batas waktu</span></div>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">MEKANISME PLACEMENT FEE</div>
+    <ul>
+      <li>MoU dengan crewing agent — M.E.C mendapat komisi per kandidat yang berhasil ditempatkan</li>
+      <li>Shipping company langsung — campus hiring event, fee per sesi dan per candidate accepted</li>
+      <li>Cruise line partnership — batch hiring, fee per 10–20 crew yang diterima</li>
+      <li>Model retainer — beberapa perusahaan membayar retainer bulanan untuk akses database kandidat</li>
+    </ul>
+    <div class="modal-section-title">TARGET MITRA PLACEMENT</div>
+    <ul>
+      <li>Crewing agents aktif di Surabaya, Jakarta, Makassar</li>
+      <li>BUMN: PT PELNI, PT PIS (Pertamina Shipping), PT Samudera Indonesia</li>
+      <li>Cruise Line: Royal Caribbean, Carnival Corp, MSC, Norwegian, Costa</li>
+      <li>Offshore companies: Vaalco, Medco, PHE, Pertamina EP</li>
+    </ul>`,
+
+  mono3:`
+    <div class="modal-eyebrow">REVENUE STREAM 03</div>
+    <div class="modal-title">Corporate Training</div>
+    <div class="modal-sub">Recurring Revenue — Kontrak Pelatihan Perusahaan</div>
+    <div class="modal-divider"></div>
+    <p>Corporate training adalah revenue stream yang paling stabil dan dapat diprediksikan. Perusahaan pelayaran, BUMN maritim, dan crewing agent yang ingin meningkatkan kompetensi kru eksisting membayar kontrak bulanan atau tahunan.</p>
+    <div class="modal-section-title">TARGET CORPORATE CLIENTS</div>
+    <ul>
+      <li>BUMN Maritim: PT PELNI, PT PIS, PT Djakarta Lloyd</li>
+      <li>Perusahaan Pelayaran Swasta Besar: Samudera Indonesia Group, Tanto Intim Line</li>
+      <li>Crewing Agents: ingin upgrade kandidat mereka sebelum ditempatkan</li>
+      <li>Offshore Companies: Pekerja offshore yang perlu English untuk rute internasional</li>
+      <li>Hotel & Resort: Persiapan staf hospitality bekerja di cruise line atau hotel internasional</li>
+    </ul>
+    <div class="modal-section-title">MODEL HARGA CORPORATE</div>
+    <ul>
+      <li>Rp15–30 juta / sesi 2 hari intensif (30–50 peserta)</li>
+      <li>Rp50–150 juta / program 1 bulan (50–100 karyawan)</li>
+      <li>Kontrak tahunan: Rp200–500 juta untuk perusahaan besar</li>
+    </ul>`,
+
+  mono4:`
+    <div class="modal-eyebrow">REVENUE STREAM 04</div>
+    <div class="modal-title">Kerjasama Institusi MET</div>
+    <div class="modal-sub">Scalable Revenue — Royalti & Retainer Akademik</div>
+    <div class="modal-divider"></div>
+    <p>Maritime Education and Training (MET) institutions — POLTEKPEL, universitas maritim, dan SMK pelayaran — secara konsisten membutuhkan materi kurikulum Maritime English yang berkualitas dan terkini. M.E.C dapat menjadi penyedia konten kurikulum yang diakui.</p>
+    <div class="modal-section-title">MODEL KERJASAMA</div>
+    <ul>
+      <li>Lisensi modul kurikulum — POLTEKPEL atau universitas membayar royalti per semester</li>
+      <li>Guest lecturer — Pak Rafael, CE mengajar reguler sebagai dosen tamu</li>
+      <li>Co-curriculum MoU — kerjasama resmi dengan credit transfer untuk taruna</li>
+      <li>Magang dan job fair — universitas membayar fee untuk akses jaringan industri M.E.C</li>
+    </ul>
+    <div class="modal-section-title">MITRA INSTITUSI TARGET</div>
+    <ul>
+      <li>POLTEKPEL Surabaya (existing relationship) — prioritas Fase 1</li>
+      <li>Universitas Hang Tuah Surabaya (existing relationship) — prioritas Fase 1</li>
+      <li>STIP Jakarta — scale Fase 2</li>
+      <li>10+ SMK Maritim di Jawa Timur — scale Fase 2–3</li>
+    </ul>`,
+
+  mono5:`
+    <div class="modal-eyebrow">REVENUE STREAM 05</div>
+    <div class="modal-title">E-Learning & Modul Digital</div>
+    <div class="modal-sub">Passive Income — Revenue Tanpa Batas Kapasitas</div>
+    <div class="modal-divider"></div>
+    <p>Platform e-learning adalah revenue stream yang paling scalable — sekali dibuat, konten dapat dijual tanpa batas ke peserta di seluruh Indonesia tanpa biaya operasional tambahan yang signifikan.</p>
+    <div class="modal-section-title">KONTEN DIGITAL YANG AKAN DIKEMBANGKAN</div>
+    <ul>
+      <li>Video Maritime English: VHF phraseology, SMCP dialogues, bridge communication</li>
+      <li>Simulasi radio interaktif — latihan langsung tanpa kapal nyata</li>
+      <li>Mock test IMO SMCP — latihan ujian standar internasional</li>
+      <li>E-book terminologi teknis (Nautika & Teknika)</li>
+      <li>Video persiapan interview crewing agent — do's and don'ts</li>
+    </ul>
+    <div class="modal-section-title">PLATFORM DISTRIBUSI</div>
+    <ul>
+      <li>Website M.E.C (platform subscription mandiri)</li>
+      <li>Kartu Prakerja — akses ke jutaan pengguna bersubsidi pemerintah</li>
+      <li>YouTube Channel — marketing funnel organik</li>
+      <li>Ruangguru / Zenius — partnership distribusi platform nasional</li>
+    </ul>`,
+
+  mono6:`
+    <div class="modal-eyebrow">REVENUE STREAM 06</div>
+    <div class="modal-title">Hibah & Subsidi Pemerintah</div>
+    <div class="modal-sub">Non-Dilutive Funding — Dana Tanpa Bunga & Tanpa Equity</div>
+    <div class="modal-divider"></div>
+    <p>Sebagai yayasan resmi yang bergerak di bidang pendidikan dan ketenagakerjaan maritim, M.E.C memiliki akses ke berbagai sumber pendanaan pemerintah dan lembaga internasional yang tidak mengurangi kepemilikan atau menambah utang.</p>
+    <div class="modal-section-title">SUMBER HIBAH & SUBSIDI</div>
+    <ul>
+      <li><strong>Kementerian Ketenagakerjaan:</strong> Program BLK (Balai Latihan Kerja) dan vokasi industri</li>
+      <li><strong>Kemenhub — BPSDM:</strong> Subsidi pelatihan SDM transportasi laut</li>
+      <li><strong>ILO Skills for Prosperity Indonesia:</strong> Hibah pelatihan vokasi berbasis industri</li>
+      <li><strong>Kartu Prakerja:</strong> Subsidi peserta langsung dari pemerintah</li>
+      <li><strong>CSR BUMN:</strong> Pertamina Foundation, PELNI Foundation, BNI Syariah</li>
+      <li><strong>Lembaga donor internasional:</strong> ADB, World Bank, GIZ (Jerman)</li>
+    </ul>`,
+
+  /* ══════════════ ORG CHART ══════════════ */
+  org_guswid:`
+    <div class="modal-eyebrow">PEMBINA YAYASAN</div>
+    <div class="modal-title">Gus Wid</div>
+    <div class="modal-sub">Founder · Pendana · Pengarah Strategis</div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">POSISI & PERAN</div>
+    <p>Sebagai Pembina Yayasan, Gus Wid berada di puncak struktur dan memegang otoritas tertinggi dalam kebijakan organisasi. Peran ini bersifat strategis dan pengawasan — bukan operasional harian.</p>
+    <div class="modal-section-title">TUGAS & TANGGUNG JAWAB</div>
+    <ul>
+      <li>Menetapkan visi, misi, dan arah strategis jangka panjang M.E.C</li>
+      <li>Menyediakan modal awal dan dukungan pendanaan fase rintisan</li>
+      <li>Mengawasi integritas dan kepatuhan yayasan terhadap hukum yang berlaku</li>
+      <li>Memberikan persetujuan akhir untuk keputusan strategis besar (MoU penting, ekspansi, perubahan AD/ART)</li>
+      <li>Menjadi representasi eksternal yayasan di hadapan pemerintah dan lembaga besar</li>
+      <li>Mengevaluasi kinerja Pengurus Yayasan secara berkala (minimal 1×/semester)</li>
+    </ul>
+    <div class="modal-section-title">WEWENANG</div>
+    <ul>
+      <li>Mengangkat dan memberhentikan Ketua Pengurus Yayasan</li>
+      <li>Memveto keputusan yang bertentangan dengan nilai dan visi yayasan</li>
+      <li>Mengesahkan laporan keuangan tahunan</li>
+    </ul>
+    <div class="modal-section-title">KPI UTAMA</div>
+    <div class="kpi-grid">
+      <div class="kpi-box"><span class="kpi-num">✓</span><span class="kpi-label">Legalitas yayasan selesai tepat waktu</span></div>
+      <div class="kpi-box"><span class="kpi-num">✓</span><span class="kpi-label">Kepuasan tim & budaya organisasi sehat</span></div>
+      <div class="kpi-box"><span class="kpi-num">✓</span><span class="kpi-label">Keberlanjutan keuangan yayasan</span></div>
+    </div>`,
+
+  org_pengurus:`
+    <div class="modal-eyebrow">PENGURUS INTI YAYASAN</div>
+    <div class="modal-title">Ketua · Sekretaris · Bendahara</div>
+    <div class="modal-sub">Tiga Pilar Tata Kelola Yayasan</div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">KETUA YAYASAN</div>
+    <ul>
+      <li>Memimpin rapat pengurus dan koordinasi antar divisi</li>
+      <li>Merepresentasikan yayasan dalam MoU dan perjanjian resmi</li>
+      <li>Mengarahkan implementasi program sesuai visi Pembina</li>
+      <li>Melaporkan perkembangan ke Pembina secara berkala</li>
+    </ul>
+    <div class="modal-section-title">SEKRETARIS YAYASAN</div>
+    <ul>
+      <li>Mengelola seluruh dokumentasi resmi, surat-menyurat, dan arsip yayasan</li>
+      <li>Menyusun notulensi rapat dan mendistribusikan ke seluruh pihak terkait</li>
+      <li>Memastikan kepatuhan administratif terhadap UU Yayasan</li>
+      <li>Koordinasi dengan notaris, Kemenkumham, dan instansi pemerintah</li>
+    </ul>
+    <div class="modal-section-title">BENDAHARA YAYASAN</div>
+    <ul>
+      <li>Mengelola akun dan arus kas yayasan secara ketat dan transparan</li>
+      <li>Menyusun laporan keuangan bulanan dan tahunan yang dapat diaudit</li>
+      <li>Mengeksekusi pembayaran insentif tim sesuai sistem contribution-based</li>
+      <li>Mempersiapkan dokumen keuangan untuk pengajuan hibah dan laporan donor</li>
+    </ul>`,
+
+  org_rafael:`
+    <div class="modal-eyebrow">TIM INTI · CREATOR & BIZ DEV</div>
+    <div class="modal-title">Pak Rafael Sukirno, CE</div>
+    <div class="modal-sub">Creator & Business Development · Pendiri Konsep M.E.C</div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">LATAR BELAKANG</div>
+    <p>Chief Engineer berpengalaman di kapal-kapal internasional. Dosen / instruktur di POLTEKPEL Surabaya dan Universitas Hang Tuah. Memiliki jaringan aktif di industri pelayaran nasional dan akademik maritim.</p>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">TANGGUNG JAWAB UTAMA</div>
+    <ul>
+      <li>Merancang dan menyempurnakan kurikulum Maritime English berbasis IMO SMCP dan pengalaman lapangan nyata</li>
+      <li>Membangun dan memelihara relasi dengan POLTEKPEL, universitas maritim, dan institusi MET</li>
+      <li>Menjadi wajah publik dan authority figure M.E.C — narasumber, speaker, konten expert</li>
+      <li>Menginisiasi dan menegosiasikan MoU dengan crewing agent, shipping company, dan cruise line</li>
+      <li>Mengembangkan strategi bisnis jangka pendek dan menengah M.E.C</li>
+      <li>Memastikan kualitas teknis semua konten pelatihan sesuai standar industri</li>
+    </ul>
+    <div class="modal-section-title">WEWENANG</div>
+    <ul>
+      <li>Final decision atas seluruh konten kurikulum dan materi pelatihan</li>
+      <li>Mewakili M.E.C dalam negosiasi MoU industri bersama Ketua Yayasan</li>
+      <li>Memberikan rekomendasi trainer dan standar kualifikasi pengajar</li>
+    </ul>
+    <div class="modal-section-title">KPI UTAMA</div>
+    <div class="kpi-grid">
+      <div class="kpi-box"><span class="kpi-num">3+</span><span class="kpi-label">MoU industri per tahun</span></div>
+      <div class="kpi-box"><span class="kpi-num">2+</span><span class="kpi-label">Kerjasama institusi MET per tahun</span></div>
+      <div class="kpi-box"><span class="kpi-num">100%</span><span class="kpi-label">Kurikulum sesuai standar IMO</span></div>
+    </div>
+    <div class="modal-section-title">INSENTIF</div>
+    <ul>
+      <li>Fee pengembangan kurikulum — per modul yang diimplementasikan</li>
+      <li>Bonus per MoU industri berhasil — komisi dari revenue placement</li>
+      <li>Royalti dari modul yang dilisensikan ke institusi lain</li>
+      <li>Fee pembicara / narasumber eksternal</li>
+    </ul>`,
+
+  org_lutfi:`
+    <div class="modal-eyebrow">TIM INTI · HEAD OF MARKETING</div>
+    <div class="modal-title">Mas Lutfi</div>
+    <div class="modal-sub">Head of Marketing & Education Network</div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">TANGGUNG JAWAB UTAMA</div>
+    <ul>
+      <li>Merancang dan mengeksekusi strategi pemasaran terintegrasi (digital + offline) M.E.C</li>
+      <li>Membangun dan mengembangkan jaringan dengan SMK maritim, SMA reguler, dan kampus di seluruh Jawa Timur</li>
+      <li>Mengelola kehadiran brand M.E.C di media sosial (Instagram, TikTok, YouTube) bersama tim digital</li>
+      <li>Mengkoordinasikan open class, sosialisasi, dan presentasi ke sekolah-sekolah</li>
+      <li>Mengelola funnel rekrutmen peserta — dari awareness hingga pendaftaran</li>
+      <li>Menyusun materi marketing dan collateral (brosur, konten promosi, proposal)</li>
+      <li>Melakukan riset pasar dan monitoring kompetitor</li>
+    </ul>
+    <div class="modal-section-title">WEWENANG</div>
+    <ul>
+      <li>Menentukan strategi dan anggaran marketing (dalam batas yang disepakati pengurus)</li>
+      <li>Membuat keputusan taktis pemasaran tanpa harus menunggu persetujuan seluruh tim</li>
+      <li>Merekomendasikan mitra distribusi dan kerjasama promosi</li>
+    </ul>
+    <div class="modal-section-title">KPI UTAMA</div>
+    <div class="kpi-grid">
+      <div class="kpi-box"><span class="kpi-num">100+</span><span class="kpi-label">Peserta terdaftar per kuartal target</span></div>
+      <div class="kpi-box"><span class="kpi-num">10K+</span><span class="kpi-label">Followers sosial media tahun 1</span></div>
+      <div class="kpi-box"><span class="kpi-num">5+</span><span class="kpi-label">MoU sekolah/kampus per semester</span></div>
+    </div>
+    <div class="modal-section-title">INSENTIF</div>
+    <ul>
+      <li>Komisi pemasaran — per peserta aktif yang berhasil terdaftar</li>
+      <li>Bonus KPI jika target enrollment kuartalan tercapai</li>
+      <li>Honor per event marketing yang dieksekusi</li>
+    </ul>`,
+
+  org_farid:`
+    <div class="modal-eyebrow">TIM INTI · HEAD OF OPERATIONS</div>
+    <div class="modal-title">Ustadz Farid</div>
+    <div class="modal-sub">Head of Operations — Pelaksanaan Program Harian</div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">TANGGUNG JAWAB UTAMA</div>
+    <ul>
+      <li>Mengelola jadwal dan pelaksanaan seluruh program pelatihan harian M.E.C</li>
+      <li>Koordinasi antara tim pengajar, peserta, dan manajemen yayasan</li>
+      <li>Memastikan standar operasional dan kualitas pelayanan terpenuhi di setiap sesi</li>
+      <li>Mengelola logistik operasional: ruang kelas, perlengkapan, konsumsi, transportasi</li>
+      <li>Menangani keluhan peserta dan resolusi masalah operasional harian</li>
+      <li>Menyusun laporan operasional bulanan kepada Ketua Yayasan</li>
+      <li>Memastikan kepatuhan SOP dan standar kualitas di seluruh program</li>
+    </ul>
+    <div class="modal-section-title">WEWENANG</div>
+    <ul>
+      <li>Mengambil keputusan operasional harian tanpa harus menunggu persetujuan</li>
+      <li>Menegur atau memberikan peringatan kepada staf yang melanggar SOP</li>
+      <li>Mengalokasikan sumber daya operasional sesuai kebutuhan program</li>
+    </ul>
+    <div class="modal-section-title">KPI UTAMA</div>
+    <div class="kpi-grid">
+      <div class="kpi-box"><span class="kpi-num">≥95%</span><span class="kpi-label">Kepuasan peserta terhadap operasional</span></div>
+      <div class="kpi-box"><span class="kpi-num">0</span><span class="kpi-label">Kelas dibatalkan tanpa pemberitahuan</span></div>
+      <div class="kpi-box"><span class="kpi-num">100%</span><span class="kpi-label">Laporan bulanan tepat waktu</span></div>
+    </div>
+    <div class="modal-section-title">INSENTIF</div>
+    <ul>
+      <li>Fee tetap operasional — per program yang berhasil dilaksanakan</li>
+      <li>Bonus performance jika kepuasan peserta melebihi target KPI</li>
+    </ul>`,
+
+  org_widodo:`
+    <div class="modal-eyebrow">TIM INTI · HEAD OF EDUCATION</div>
+    <div class="modal-title">Ustadz Widodo</div>
+    <div class="modal-sub">Head of Education & Curriculum</div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">TANGGUNG JAWAB UTAMA</div>
+    <ul>
+      <li>Mengembangkan dan menyempurnakan silabus dan modul kurikulum Maritime English bersama Pak Rafael</li>
+      <li>Merekrut, melatih, dan mengevaluasi kinerja seluruh trainer / instruktur M.E.C</li>
+      <li>Memastikan standar pengajaran konsisten di seluruh kelas dan batch</li>
+      <li>Merancang sistem evaluasi peserta (pre-test, mid-test, final test)</li>
+      <li>Mengadaptasi kurikulum berdasarkan feedback peserta dan perkembangan industri</li>
+      <li>Menyusun rencana pembelajaran semester dan batch baru</li>
+      <li>Memastikan integrasi konten e-learning dengan program offline</li>
+    </ul>
+    <div class="modal-section-title">WEWENANG</div>
+    <ul>
+      <li>Final decision atas metode pengajaran dan instrumen evaluasi peserta</li>
+      <li>Menetapkan standar minimum kelulusan peserta untuk sertifikat M.E.C</li>
+      <li>Merekomendasikan perekrutan atau penghentian kontrak trainer</li>
+    </ul>
+    <div class="modal-section-title">KPI UTAMA</div>
+    <div class="kpi-grid">
+      <div class="kpi-box"><span class="kpi-num">≥80%</span><span class="kpi-label">Pass rate peserta per batch</span></div>
+      <div class="kpi-box"><span class="kpi-num">4+</span><span class="kpi-label">Trainer terlatih tahun 1</span></div>
+      <div class="kpi-box"><span class="kpi-num">2+</span><span class="kpi-label">Modul baru per semester</span></div>
+    </div>
+    <div class="modal-section-title">INSENTIF</div>
+    <ul>
+      <li>Honor per modul kurikulum yang diimplementasikan penuh</li>
+      <li>Bonus pass rate — jika persentase kelulusan melebihi target</li>
+      <li>Fee supervisi trainer per bulan aktif</li>
+    </ul>`,
+
+  org_manto:`
+    <div class="modal-eyebrow">TIM INTI · BUSINESS SUPPORT</div>
+    <div class="modal-title">Pak Manto</div>
+    <div class="modal-sub">Business Support — Identifikasi & Eksekusi Peluang Bisnis</div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">TANGGUNG JAWAB UTAMA</div>
+    <ul>
+      <li>Mengidentifikasi dan mengejar peluang bisnis baru untuk M.E.C (sponsor, donor, hibah, corporate client)</li>
+      <li>Menjaga dan mengembangkan relasi dengan mitra bisnis yang sudah ada</li>
+      <li>Membantu Pak Rafael dalam riset dan persiapan proposal MoU dan kerjasama industri</li>
+      <li>Memonitor tren industri maritim dan hospitality untuk peluang produk/layanan baru</li>
+      <li>Membantu proses negosiasi kontrak dan kerjasama komersial</li>
+      <li>Melaporkan pipeline bisnis kepada Ketua Yayasan secara bulanan</li>
+    </ul>
+    <div class="modal-section-title">WEWENANG</div>
+    <ul>
+      <li>Mengeksplorasi dan memulai diskusi awal dengan calon mitra bisnis</li>
+      <li>Merekomendasikan arah pengembangan bisnis baru kepada pengurus</li>
+      <li>Mengakses data keuangan terbatas untuk keperluan riset bisnis</li>
+    </ul>
+    <div class="modal-section-title">KPI UTAMA</div>
+    <div class="kpi-grid">
+      <div class="kpi-box"><span class="kpi-num">2+</span><span class="kpi-label">Deal bisnis baru per kuartal</span></div>
+      <div class="kpi-box"><span class="kpi-num">5+</span><span class="kpi-label">Proposal sponsor/hibah per tahun</span></div>
+    </div>
+    <div class="modal-section-title">INSENTIF</div>
+    <ul>
+      <li>Komisi per deal bisnis yang berhasil ditutup</li>
+      <li>Bonus per hibah atau sponsor yang berhasil diamankan</li>
+    </ul>`,
+
+  org_toib:`
+    <div class="modal-eyebrow">TIM INTI · OPERATIONAL SUPPORT</div>
+    <div class="modal-title">Pak Toib</div>
+    <div class="modal-sub">Operational Support — Koordinasi Lapangan & Fasilitas</div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">TANGGUNG JAWAB UTAMA</div>
+    <ul>
+      <li>Koordinasi dan pengawasan fasilitas kelas, ruangan, dan perlengkapan teknis harian</li>
+      <li>Memastikan kesiapan ruang kelas, proyektor, sound system, dan peralatan pendukung sebelum setiap sesi</li>
+      <li>Mengelola kebutuhan akomodasi dan transportasi peserta luar kota jika diperlukan</li>
+      <li>Menjaga kebersihan, kerapian, dan kenyamanan lingkungan belajar</li>
+      <li>Membantu persiapan logistik event besar (job fair, open house, graduation)</li>
+      <li>Melaporkan kebutuhan perbaikan atau pengadaan fasilitas kepada Head of Operations</li>
+    </ul>
+    <div class="modal-section-title">WEWENANG</div>
+    <ul>
+      <li>Mengambil keputusan logistik harian tanpa perlu persetujuan</li>
+      <li>Berkoordinasi langsung dengan vendor dan supplier fasilitas</li>
+    </ul>
+    <div class="modal-section-title">KPI UTAMA</div>
+    <div class="kpi-grid">
+      <div class="kpi-box"><span class="kpi-num">100%</span><span class="kpi-label">Kelas siap sebelum sesi dimulai</span></div>
+      <div class="kpi-box"><span class="kpi-num">0</span><span class="kpi-label">Keluhan fasilitas teknis per batch</span></div>
+    </div>
+    <div class="modal-section-title">INSENTIF</div>
+    <ul>
+      <li>Gaji/fee tetap bulanan berdasarkan jam kerja aktif</li>
+      <li>Tunjangan event untuk penugasan di luar jadwal reguler</li>
+    </ul>`,
+
+  org_digital:`
+    <div class="modal-eyebrow">TIM INTI · DIGITAL & MARKETING SUPPORT</div>
+    <div class="modal-title">Mas Nopi & Mas Bhakti</div>
+    <div class="modal-sub">Digital Content & Social Media Marketing</div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">TANGGUNG JAWAB UTAMA</div>
+    <ul>
+      <li>Produksi konten media sosial harian (Instagram, TikTok, YouTube Shorts, Facebook)</li>
+      <li>Mengelola jadwal posting dan strategi konten sesuai arahan Head of Marketing</li>
+      <li>Produksi video edukasi pendek — tips Maritime English, testimoni alumni, behind-the-scenes</li>
+      <li>Mengelola iklan berbayar (Meta Ads, Google Ads, TikTok Ads) dan memantau ROI</li>
+      <li>Desain grafis untuk materi promosi, sertifikat, dan collateral M.E.C</li>
+      <li>Monitoring dan analisis performa konten (engagement, reach, conversion)</li>
+      <li>Membantu pengembangan konten e-learning dalam format digital</li>
+    </ul>
+    <div class="modal-section-title">PEMBAGIAN PERAN (Nopi vs Bhakti)</div>
+    <ul>
+      <li><strong>Mas Nopi:</strong> Fokus produksi video, editing, dan konten YouTube/TikTok</li>
+      <li><strong>Mas Bhakti:</strong> Fokus desain grafis, copywriting, dan manajemen iklan berbayar</li>
+    </ul>
+    <div class="modal-section-title">KPI UTAMA</div>
+    <div class="kpi-grid">
+      <div class="kpi-box"><span class="kpi-num">10K+</span><span class="kpi-label">Followers semua platform tahun 1</span></div>
+      <div class="kpi-box"><span class="kpi-num">5%+</span><span class="kpi-label">Engagement rate per post</span></div>
+      <div class="kpi-box"><span class="kpi-num">20+</span><span class="kpi-label">Konten dipublikasikan per bulan</span></div>
+    </div>
+    <div class="modal-section-title">INSENTIF</div>
+    <ul>
+      <li>Honor konten — per konten yang diproduksi dan dipublikasikan</li>
+      <li>Bonus KPI bulanan jika target engagement dan followers tercapai</li>
+      <li>Fee tambahan per iklan berbayar yang dikelola</li>
+    </ul>`,
+
+  /* ── PARTNER LINKS ── */
+  partnerLinks:`
+    <div class="modal-eyebrow">REFERENSI MITRA</div>
+    <div class="modal-title">Institusi & Mitra Strategis M.E.C</div>
+    <div class="modal-sub">Klik kartu untuk membuka situs resmi</div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">🌐 BADAN MARITIM INTERNASIONAL</div>
+    <div class="modal-link-grid">
+      <a class="modal-link-card" href="https://www.imo.org" target="_blank" rel="noopener">
+        <span class="mlc-category">INTERNASIONAL</span>
+        <span class="mlc-name">IMO</span>
+        <span class="mlc-url">imo.org ↗</span>
+        <span class="mlc-desc">Standar SMCP & STCW global</span>
+      </a>
+      <a class="modal-link-card" href="https://www.bimco.org" target="_blank" rel="noopener">
+        <span class="mlc-category">ASOSIASI</span>
+        <span class="mlc-name">BIMCO</span>
+        <span class="mlc-url">bimco.org ↗</span>
+        <span class="mlc-desc">Data pasar seafarer global</span>
+      </a>
+      <a class="modal-link-card" href="https://www.ilo.org/indonesia" target="_blank" rel="noopener">
+        <span class="mlc-category">FUNDING</span>
+        <span class="mlc-name">ILO Indonesia</span>
+        <span class="mlc-url">ilo.org ↗</span>
+        <span class="mlc-desc">Skills for Prosperity, hibah</span>
+      </a>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">🛳️ CRUISE LINES GLOBAL</div>
+    <div class="modal-link-grid">
+      <a class="modal-link-card" href="https://www.royalcaribbeancareers.com" target="_blank" rel="noopener">
+        <span class="mlc-category">CRUISE LINE</span>
+        <span class="mlc-name">Royal Caribbean</span>
+        <span class="mlc-url">royalcaribbeancareers.com ↗</span>
+        <span class="mlc-desc">60+ kapal, rekrut Asia aktif</span>
+      </a>
+      <a class="modal-link-card" href="https://www.carnival.com/careers" target="_blank" rel="noopener">
+        <span class="mlc-category">CRUISE LINE</span>
+        <span class="mlc-name">Carnival Corp</span>
+        <span class="mlc-url">carnival.com/careers ↗</span>
+        <span class="mlc-desc">9 brand, ribuan posisi terbuka</span>
+      </a>
+      <a class="modal-link-card" href="https://www.msccruises.com" target="_blank" rel="noopener">
+        <span class="mlc-category">CRUISE LINE</span>
+        <span class="mlc-name">MSC Cruises</span>
+        <span class="mlc-url">msccruises.com ↗</span>
+        <span class="mlc-desc">Ekspansi agresif di Asia</span>
+      </a>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-title">🏫 INSTITUSI NASIONAL</div>
+    <div class="modal-link-grid">
+      <a class="modal-link-card" href="https://www.poltekpel-sby.ac.id" target="_blank" rel="noopener">
+        <span class="mlc-category">POLITEKNIK</span>
+        <span class="mlc-name">POLTEKPEL Surabaya</span>
+        <span class="mlc-url">poltekpel-sby.ac.id ↗</span>
+        <span class="mlc-desc">Mitra utama existing</span>
+      </a>
+      <a class="modal-link-card" href="https://hangtuah.ac.id" target="_blank" rel="noopener">
+        <span class="mlc-category">UNIVERSITAS</span>
+        <span class="mlc-name">Univ. Hang Tuah</span>
+        <span class="mlc-url">hangtuah.ac.id ↗</span>
+        <span class="mlc-desc">Mitra utama existing</span>
+      </a>
+      <a class="modal-link-card" href="https://hubla.dephub.go.id" target="_blank" rel="noopener">
+        <span class="mlc-category">PEMERINTAH</span>
+        <span class="mlc-name">Ditjen Hubla</span>
+        <span class="mlc-url">hubla.dephub.go.id ↗</span>
+        <span class="mlc-desc">Regulator & sertifikasi</span>
+      </a>
+    </div>`
+};
+
+function openModal(id){
+  const d=modalData[id];
+  if(!d)return;
+  document.getElementById('modal-content').innerHTML=d;
+  document.getElementById('modal-overlay').classList.add('active');
+  document.body.style.overflow='hidden';
+  document.getElementById('modal-box').scrollTop=0;
+}
+function closeModal(){
+  document.getElementById('modal-overlay').classList.remove('active');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+/* ═══════════════════ FAQ ═══════════════════ */
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item');
+  const body=item.querySelector('.faq-body');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(el=>{
+    el.classList.remove('open');
+    el.querySelector('.faq-body').classList.remove('open');
+  });
+  if(!isOpen){item.classList.add('open');body.classList.add('open');}
+}
+
+/* ═══════════════════ PARTNER TABS ═══════════════════ */
+function switchTab(id){
+  document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.partner-pane').forEach(p=>p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('pane-'+id).classList.add('active');
+}
+
+/* ═══════════════════ NAV ACTIVE ═══════════════════ */
+const sections=document.querySelectorAll('section[id],div[id]');
+const navLinks=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{
+    if(window.scrollY>=s.offsetTop-120)current=s.id;
+  });
+  navLinks.forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+current);
+  });
+},{passive:true});
+
+/* ═══════════════════ SMOOTH NAV CLICK ═══════════════════ */
+navLinks.forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target){
+      const offset=target.getBoundingClientRect().top+window.scrollY-70;
+      window.scrollTo({top:offset,behavior:'smooth'});
+    }
+  });
+});
+</script>
+</body>
+</html>
